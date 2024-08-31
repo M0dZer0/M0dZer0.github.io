@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://m0dzer0.github.io/post/hello-algo-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/cover.png">
 <meta property="article:published_time" content="2024-07-22T09:05:03.809Z">
-<meta property="article:modified_time" content="2024-08-07T07:30:10.164Z">
+<meta property="article:modified_time" content="2024-08-08T05:31:55.837Z">
 <meta property="article:author" content="M0dZer0">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="数据结构">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          14k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          56 分钟
+          69 分钟
         
       </span>
     
@@ -311,7 +311,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年8月7日 下午
+                    本文最后更新于 2024年8月8日 下午
                   
                 
               </p>
@@ -709,6 +709,106 @@ b_{31} b_{30} b_{29} \ldots b_2 b_1 b_0
 
 <p>设平衡因子为$f$，则一棵 AVL 树的任意节点的平衡因子皆满足$-1 \leq f \leq 1$  。</p>
 <h5 id="AVL树旋转"><a href="#AVL树旋转" class="headerlink" title="AVL树旋转"></a>AVL树旋转</h5><p>具体步骤参考：<a target="_blank" rel="noopener" href="https://www.hello-algo.com/chapter_tree/avl_tree/#752-avl">https://www.hello-algo.com/chapter_tree/avl_tree/#752-avl</a></p>
+<h3 id="第8章-堆"><a href="#第8章-堆" class="headerlink" title="第8章 堆"></a>第8章 堆</h3><h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4><p>堆（heap）是一种满足特定条件的完全二叉树，主要可分为两种类型，如图所示。</p>
+<ul>
+<li>小顶堆（min heap）：任意节点的值 $\leq$ 其子节点的值。</li>
+<li>大顶堆（max heap）：任意节点的值 $\geq$ 其子节点的值。</li>
+</ul>
+<p><img src="https://www.hello-algo.com/chapter_heap/heap.assets/min_heap_and_max_heap.png" srcset="/img/loading.gif" lazyload></p>
+<p>堆作为完全二叉树的一个特例，具有以下特性。</p>
+<ul>
+<li>最底层节点靠左填充，其他层的节点都被填满。</li>
+<li>我们将二叉树的根节点称为“堆顶”，将底层最靠右的节点称为“堆底”。</li>
+<li>对于大顶堆（小顶堆），堆顶元素（根节点）的值是最大（最小）的。</li>
+</ul>
+<h5 id="堆的常用操作"><a href="#堆的常用操作" class="headerlink" title="堆的常用操作"></a>堆的常用操作</h5><p>需要指出的是，许多编程语言提供的是优先队列（priority queue），这是一种抽象的数据结构，定义为具有优先级排序的队列。</p>
+<p>实际上，<strong>堆通常用于实现优先队列，大顶堆相当于元素按从大到小的顺序出队的优先队列</strong>。从使用角度来看，我们可以将“优先队列”和“堆”看作等价的数据结构。因此，本书对两者不做特别区分，统一称作“堆”。</p>
+<p>堆的常用操作见下表 ，方法名需要根据编程语言来确定。</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名</th>
+<th align="center">描述</th>
+<th align="center">时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>push()</code></td>
+<td align="center">元素入堆</td>
+<td align="center">$O(logn)$</td>
+</tr>
+<tr>
+<td align="center"><code>pop()</code></td>
+<td align="center">堆顶元素出堆</td>
+<td align="center">$O(logn)$</td>
+</tr>
+<tr>
+<td align="center"><code>peek()</code></td>
+<td align="center">访问堆顶元素（对于大 &#x2F; 小顶堆分别为最大 &#x2F; 小值）</td>
+<td align="center">$O(1)$</td>
+</tr>
+<tr>
+<td align="center"><code>size()</code></td>
+<td align="center">获取堆的元素数量</td>
+<td align="center">$O(1)$</td>
+</tr>
+<tr>
+<td align="center"><code>isEmpty()</code></td>
+<td align="center">判断堆是否为空</td>
+<td align="center">$O(1)$</td>
+</tr>
+</tbody></table>
+<p>在实际应用中，我们可以直接使用编程语言提供的堆类（或优先队列类）。</p>
+<p>类似于排序算法中的“从小到大排列”和“从大到小排列”，我们可以通过设置一个 <code>flag</code> 或修改 <code>Comparator</code> 实现“小顶堆”与“大顶堆”之间的转换。代码如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/* 初始化堆 */</span><br><span class="hljs-comment">// 初始化小顶堆</span><br>priority_queue&lt;<span class="hljs-type">int</span>, vector&lt;<span class="hljs-type">int</span>&gt;, greater&lt;<span class="hljs-type">int</span>&gt;&gt; minHeap;<br><span class="hljs-comment">// 初始化大顶堆</span><br>priority_queue&lt;<span class="hljs-type">int</span>, vector&lt;<span class="hljs-type">int</span>&gt;, less&lt;<span class="hljs-type">int</span>&gt;&gt; maxHeap;<br><br><span class="hljs-comment">/* 元素入堆 */</span><br>maxHeap.<span class="hljs-built_in">push</span>(<span class="hljs-number">1</span>);<br>maxHeap.<span class="hljs-built_in">push</span>(<span class="hljs-number">3</span>);<br>maxHeap.<span class="hljs-built_in">push</span>(<span class="hljs-number">2</span>);<br>maxHeap.<span class="hljs-built_in">push</span>(<span class="hljs-number">5</span>);<br>maxHeap.<span class="hljs-built_in">push</span>(<span class="hljs-number">4</span>);<br><br><span class="hljs-comment">/* 获取堆顶元素 */</span><br><span class="hljs-type">int</span> peek = maxHeap.<span class="hljs-built_in">top</span>(); <span class="hljs-comment">// 5</span><br><br><span class="hljs-comment">/* 堆顶元素出堆 */</span><br><span class="hljs-comment">// 出堆元素会形成一个从大到小的序列</span><br>maxHeap.<span class="hljs-built_in">pop</span>(); <span class="hljs-comment">// 5</span><br>maxHeap.<span class="hljs-built_in">pop</span>(); <span class="hljs-comment">// 4</span><br>maxHeap.<span class="hljs-built_in">pop</span>(); <span class="hljs-comment">// 3</span><br>maxHeap.<span class="hljs-built_in">pop</span>(); <span class="hljs-comment">// 2</span><br>maxHeap.<span class="hljs-built_in">pop</span>(); <span class="hljs-comment">// 1</span><br><br><span class="hljs-comment">/* 获取堆大小 */</span><br><span class="hljs-type">int</span> size = maxHeap.<span class="hljs-built_in">size</span>();<br><br><span class="hljs-comment">/* 判断堆是否为空 */</span><br><span class="hljs-type">bool</span> isEmpty = maxHeap.<span class="hljs-built_in">empty</span>();<br><br><span class="hljs-comment">/* 输入列表并建堆 */</span><br>vector&lt;<span class="hljs-type">int</span>&gt; input&#123;<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>&#125;;<br>priority_queue&lt;<span class="hljs-type">int</span>, vector&lt;<span class="hljs-type">int</span>&gt;, greater&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">minHeap</span>(input.<span class="hljs-built_in">begin</span>(), input.<span class="hljs-built_in">end</span>());<br></code></pre></td></tr></table></figure>
+
+<h5 id="堆的实现"><a href="#堆的实现" class="headerlink" title="堆的实现"></a>堆的实现</h5><p>“二叉树”章节讲过，完全二叉树非常适合用数组来表示。由于堆正是一种完全二叉树，<strong>因此我们将采用数组来存储堆</strong>。</p>
+<p>当使用数组表示二叉树时，元素代表节点值，索引代表节点在二叉树中的位置。<strong>节点指针通过索引映射公式来实现</strong>。</p>
+<p>如图所示，给定索引 $i$，其左子节点的索引为 $2i+1$，右子节点的索引为 $2i+2$，父节点的索引为 $(i-1)&#x2F;2$（向下整除）。当索引越界时，表示空节点或节点不存在。</p>
+<p><img src="https://www.hello-algo.com/chapter_heap/heap.assets/representation_of_heap.png" srcset="/img/loading.gif" lazyload></p>
+<p>给定元素 <code>val</code> ，我们首先将其添加到堆底。添加之后，由于 <code>val</code> 可能大于堆中其他元素，堆的成立条件可能已被破坏，<strong>因此需要修复从插入节点到根节点的路径上的各个节点</strong>，这个操作被称为堆化（heapify）。</p>
+<p>考虑从入堆节点开始，<strong>从底至顶执行堆化</strong>。我们比较插入节点与其父节点的值，如果插入节点更大，则将它们交换。然后继续执行此操作，从底至顶修复堆中的各个节点，直至越过根节点或遇到无须交换的节点时结束。</p>
+<p>设节点总数为 $n$，则树的高度为 $O(logn)$。由此可知，堆化操作的循环轮数最多为 $O(logn)$，<strong>元素入堆操作的时间复杂度为</strong> $O(logn)$。代码如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/* 元素入堆 */</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span> </span>&#123;<br>    <span class="hljs-comment">// 添加节点</span><br>    maxHeap.<span class="hljs-built_in">push_back</span>(val);<br>    <span class="hljs-comment">// 从底至顶堆化</span><br>    <span class="hljs-built_in">siftUp</span>(<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>);<br>&#125;<br><br><span class="hljs-comment">/* 从节点 i 开始，从底至顶堆化 */</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">siftUp</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> </span>&#123;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>        <span class="hljs-comment">// 获取节点 i 的父节点</span><br>        <span class="hljs-type">int</span> p = <span class="hljs-built_in">parent</span>(i);<br>        <span class="hljs-comment">// 当“越过根节点”或“节点无须修复”时，结束堆化</span><br>        <span class="hljs-keyword">if</span> (p &lt; <span class="hljs-number">0</span> || maxHeap[i] &lt;= maxHeap[p])<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-comment">// 交换两节点</span><br>        <span class="hljs-built_in">swap</span>(maxHeap[i], maxHeap[p]);<br>        <span class="hljs-comment">// 循环向上堆化</span><br>        i = p;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>堆顶元素是二叉树的根节点，即列表首元素。如果我们直接从列表中删除首元素，那么二叉树中所有节点的索引都会发生变化，这将使得后续使用堆化进行修复变得困难。为了尽量减少元素索引的变动，我们采用以下操作步骤。</p>
+<ol>
+<li>交换堆顶元素与堆底元素（交换根节点与最右叶节点）。</li>
+<li>交换完成后，将堆底从列表中删除（注意，由于已经交换，因此实际上删除的是原来的堆顶元素）。</li>
+<li>从根节点开始，<strong>从顶至底执行堆化</strong>。</li>
+</ol>
+<p>与元素入堆操作相似，堆顶元素出堆操作的时间复杂度也为 $O(logn)$。代码如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/* 元素出堆 */</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">pop</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// 判空处理</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isEmpty</span>()) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-built_in">out_of_range</span>(<span class="hljs-string">&quot;堆为空&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">// 交换根节点与最右叶节点（交换首元素与尾元素）</span><br>    <span class="hljs-built_in">swap</span>(maxHeap[<span class="hljs-number">0</span>], maxHeap[<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>]);<br>    <span class="hljs-comment">// 删除节点</span><br>    maxHeap.<span class="hljs-built_in">pop_back</span>();<br>    <span class="hljs-comment">// 从顶至底堆化</span><br>    <span class="hljs-built_in">siftDown</span>(<span class="hljs-number">0</span>);<br>&#125;<br><br><span class="hljs-comment">/* 从节点 i 开始，从顶至底堆化 */</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">siftDown</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> </span>&#123;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>        <span class="hljs-comment">// 判断节点 i, l, r 中值最大的节点，记为 ma</span><br>        <span class="hljs-type">int</span> l = <span class="hljs-built_in">left</span>(i), r = <span class="hljs-built_in">right</span>(i), ma = i;<br>        <span class="hljs-keyword">if</span> (l &lt; <span class="hljs-built_in">size</span>() &amp;&amp; maxHeap[l] &gt; maxHeap[ma])<br>            ma = l;<br>        <span class="hljs-keyword">if</span> (r &lt; <span class="hljs-built_in">size</span>() &amp;&amp; maxHeap[r] &gt; maxHeap[ma])<br>            ma = r;<br>        <span class="hljs-comment">// 若节点 i 最大或索引 l, r 越界，则无须继续堆化，跳出</span><br>        <span class="hljs-keyword">if</span> (ma == i)<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-built_in">swap</span>(maxHeap[i], maxHeap[ma]);<br>        <span class="hljs-comment">// 循环向下堆化</span><br>        i = ma;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="建堆操作"><a href="#建堆操作" class="headerlink" title="建堆操作"></a>建堆操作</h4><h5 id="借助入堆操作实现"><a href="#借助入堆操作实现" class="headerlink" title="借助入堆操作实现"></a>借助入堆操作实现</h5><p>我们首先创建一个空堆，然后遍历列表，依次对每个元素执行“入堆操作”，即先将元素添加至堆的尾部，再对该元素执行“从底至顶”堆化。</p>
+<p>每当一个元素入堆，堆的长度就加一。由于节点是从顶到底依次被添加进二叉树的，因此堆是“自上而下”构建的。</p>
+<p>设元素数量为 $n$，每个元素的入堆操作使用 $O(logn)$时间，因此该建堆方法的时间复杂度为 $O(nlogn)$。</p>
+<h5 id="通过遍历堆化实现"><a href="#通过遍历堆化实现" class="headerlink" title="通过遍历堆化实现"></a>通过遍历堆化实现</h5><p>实际上，我们可以实现一种更为高效的建堆方法，共分为两步。</p>
+<ol>
+<li>将列表所有元素原封不动地添加到堆中，此时堆的性质尚未得到满足。</li>
+<li>倒序遍历堆（层序遍历的倒序），依次对每个非叶节点执行“从顶至底堆化”。</li>
+</ol>
+<p><strong>每当堆化一个节点后，以该节点为根节点的子树就形成一个合法的子堆</strong>。而由于是倒序遍历，因此堆是“自下而上”构建的。</p>
+<p>之所以选择倒序遍历，是因为这样能够保证当前节点之下的子树已经是合法的子堆，这样堆化当前节点才是有效的。</p>
+<p>值得说明的是，<strong>由于叶节点没有子节点，因此它们天然就是合法的子堆，无须堆化</strong>。如以下代码所示，最后一个非叶节点是最后一个节点的父节点，我们从它开始倒序遍历并执行堆化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/* 构造方法，根据输入列表建堆 */</span><br><span class="hljs-built_in">MaxHeap</span>(vector&lt;<span class="hljs-type">int</span>&gt; nums) &#123;<br>    <span class="hljs-comment">// 将列表元素原封不动添加进堆</span><br>    maxHeap = nums;<br>    <span class="hljs-comment">// 堆化除叶节点以外的其他所有节点</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-built_in">parent</span>(<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>); i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>        <span class="hljs-built_in">siftDown</span>(i);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>参考：<a target="_blank" rel="noopener" href="https://www.hello-algo.com/chapter_heap/build_heap">https://www.hello-algo.com/chapter_heap/build_heap</a></p>
+<p><strong>输入列表并建堆的时间复杂度为 $O(n)$，非常高效</strong>。</p>
+<h4 id="用堆解决Top-k问题"><a href="#用堆解决Top-k问题" class="headerlink" title="用堆解决Top-k问题"></a>用堆解决Top-k问题</h4><p>给定一个长度为 的无序数组 <code>nums</code> ，请返回数组中最大的 $k$ 个元素。</p>
+<p>我们可以基于堆更加高效地解决 Top-k 问题，流程下所示。</p>
+<ol>
+<li>初始化一个小顶堆，其堆顶元素最小。</li>
+<li>先将数组的前 $k$ 个元素依次入堆。</li>
+<li>从第 $k+1$ 个元素开始，若当前元素大于堆顶元素，则将堆顶元素出堆，并将当前元素入堆。</li>
+<li>遍历完成后，堆中保存的就是最大的 $k$ 个元素。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/* 基于堆查找数组中最大的 k 个元素 */</span><br>priority_queue&lt;<span class="hljs-type">int</span>, vector&lt;<span class="hljs-type">int</span>&gt;, greater&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">topKHeap</span>(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums, <span class="hljs-type">int</span> k) &#123;<br>    <span class="hljs-comment">// 初始化小顶堆</span><br>    priority_queue&lt;<span class="hljs-type">int</span>, vector&lt;<span class="hljs-type">int</span>&gt;, greater&lt;<span class="hljs-type">int</span>&gt;&gt; heap;<br>    <span class="hljs-comment">// 将数组的前 k 个元素入堆</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) &#123;<br>        heap.<span class="hljs-built_in">push</span>(nums[i]);<br>    &#125;<br>    <span class="hljs-comment">// 从第 k+1 个元素开始，保持堆的长度为 k</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = k; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>        <span class="hljs-comment">// 若当前元素大于堆顶元素，则将堆顶元素出堆、当前元素入堆</span><br>        <span class="hljs-keyword">if</span> (nums[i] &gt; heap.<span class="hljs-built_in">top</span>()) &#123;<br>            heap.<span class="hljs-built_in">pop</span>();<br>            heap.<span class="hljs-built_in">push</span>(nums[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> heap;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>总共执行了 $n$ 轮入堆和出堆，堆的最大长度为 $k$，因此时间复杂度为 $O(nlogk)$。该方法的效率很高，当 $k$ 较小时，时间复杂度趋向 $O(n)$；当 $k$ 较大时，时间复杂度不会超过 $O(nlogn)$。</p>
+<p>另外，该方法适用于动态数据流的使用场景。在不断加入数据时，我们可以持续维护堆内的元素，从而实现最大的 $k$ 个元素的动态更新。</p>
+<h5 id="Q-A"><a href="#Q-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h5><p><strong>Q</strong>：数据结构的“堆”与内存管理的“堆”是同一个概念吗？</p>
+<p>两者不是同一个概念，只是碰巧都叫“堆”。计算机系统内存中的堆是动态内存分配的一部分，程序在运行时可以使用它来存储数据。程序可以请求一定量的堆内存，用于存储如对象和数组等复杂结构。当这些数据不再需要时，程序需要释放这些内存，以防止内存泄漏。相较于栈内存，堆内存的管理和使用需要更谨慎，使用不当可能会导致内存泄漏和野指针等问题。</p>
 
                 
               </div>
