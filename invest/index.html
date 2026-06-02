@@ -16,13 +16,15 @@
   <meta name="author" content="M0dZer0">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="投资看板">
+    <meta name="description" content="const DAILY_DATA &#x3D; [         { date: &quot;2026-06-02&quot;, eastMoney: 7292, ths: 79078, gold: 22475, margin: 57303},         { date: &quot;2026-06-01&quot;, eastMoney: 7096, ths: 73629, gold: 22532, mar">
+<meta property="og:type" content="website">
+<meta property="og:title" content="page.title">
 <meta property="og:url" content="https://m0dzer0.github.io/invest/index.html">
 <meta property="og:site_name" content="M0dZer0">
+<meta property="og:description" content="const DAILY_DATA &#x3D; [         { date: &quot;2026-06-02&quot;, eastMoney: 7292, ths: 79078, gold: 22475, margin: 57303},         { date: &quot;2026-06-01&quot;, eastMoney: 7096, ths: 73629, gold: 22532, mar">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-06-02T14:08:20.182Z">
-<meta property="article:modified_time" content="2026-06-02T14:08:20.182Z">
+<meta property="article:published_time" content="2026-06-02T15:27:05.940Z">
+<meta property="article:modified_time" content="2026-06-02T15:27:05.940Z">
 <meta property="article:author" content="M0dZer0">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -30,13 +32,11 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>投资看板 - M0dZer0</title>
+  <title>page.title - M0dZer0</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-
-  <link  rel="stylesheet" href="/css/invest.css" />
 
 
 
@@ -87,7 +87,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 34vh;">
+<div class="header-inner" style="height: 60vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -225,11 +225,11 @@
 <div id="banner" class="banner" parallax=true
      style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.78)">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="每日记录净资产趋势与资产结构"></span>
+            <span id="subtitle" data-typed-text="page.title"></span>
           
         </div>
 
@@ -256,200 +256,1356 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<article class="page-content invest-page">
-  <section class="invest-shell">
-    <section class="invest-hero-card">
-      <div>
-        <p class="invest-eyebrow">Daily Asset Tracker</p>
-        <h1 class="invest-title">投资看板</h1>
-        <p class="invest-summary" id="invest-summary-text">正在读取最新资产数据...</p>
-      </div>
-      <div class="invest-update-hint">
-        <span class="invest-update-hint__label">每日更新入口</span>
-        <strong class="invest-update-hint__path">/Users/zeroking/blog/source/js/invest.js</strong>
-        <span class="invest-update-hint__tip">只需要在顶部的 <code>INVEST_DAILY_DATA</code> 数组末尾追加一条记录。</span>
-      </div>
-    </section>
+<article class="page-content">
+  <!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <script>
+      const DAILY_DATA = [
+        { date: "2026-06-02", eastMoney: 7292, ths: 79078, gold: 22475, margin: 57303},
+        { date: "2026-06-01", eastMoney: 7096, ths: 73629, gold: 22532, margin: 57296},
+        { date: "2026-05-31", eastMoney: 7163, ths: 74525, gold: 22800, margin: 57285}
+      ];
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>投资看板</title>
+    <style>
+      :root {
+        --bg: #05070b;
+        --panel: rgba(13, 17, 24, 0.92);
+        --panel-strong: rgba(18, 23, 34, 0.96);
+        --line: rgba(255, 255, 255, 0.08);
+        --text: #f5f7fb;
+        --muted: #9aa5b5;
+        --up: #ff5d73;
+        --down: #43c783;
+        --flat: #90a0b3;
+        --east: #ff9a3d;
+        --ths: #ff5a67;
+        --gold: #f6c445;
+        --margin: #57b8ff;
+        --total: #ff5d73;
+      }
 
-    <section class="invest-overview-card">
-      <div class="invest-overview-card__main">
-        <p class="invest-section-label">本月盈亏</p>
-        <div class="invest-pnl-value" id="monthly-pnl-value">--</div>
-        <p class="invest-pnl-reference" id="monthly-pnl-reference">较上月最后一天 --</p>
-        <div class="invest-overview-meta">
-          <div class="invest-overview-meta__item">
-            <span>总资产</span>
-            <strong id="overview-total-assets">--</strong>
-          </div>
-          <div class="invest-overview-meta__item">
-            <span>较昨日</span>
-            <strong id="overview-total-daily-change">--</strong>
-          </div>
-          <div class="invest-overview-meta__item">
-            <span>最新日期</span>
-            <strong id="overview-latest-date">--</strong>
-          </div>
-        </div>
-      </div>
+      * {
+        box-sizing: border-box;
+      }
 
-      <div class="invest-overview-card__side">
-        <div class="invest-donut-head">
-          <p class="invest-section-label">我的资产组成</p>
-          <span class="invest-donut-note">环形图按当前最新数据生成，含融资余额。</span>
-        </div>
-        <div class="invest-donut-wrap">
-          <div class="composition-donut" id="composition-chart">
-            <div class="composition-donut__center">
-              <span>净总资产</span>
-              <strong id="composition-total">--</strong>
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at top left, rgba(255, 93, 115, 0.14), transparent 28%),
+          radial-gradient(circle at top right, rgba(255, 192, 77, 0.1), transparent 26%),
+          linear-gradient(180deg, #04060a 0%, #05070b 100%);
+        color: var(--text);
+        font-family: "Avenir Next", "PingFang SC", "Helvetica Neue", sans-serif;
+      }
+
+      body {
+        padding: 28px;
+      }
+
+      .page {
+        width: min(1280px, 100%);
+        margin: 0 auto;
+      }
+
+      .overview,
+      .card,
+      .modal-panel {
+        background:
+          linear-gradient(150deg, rgba(22, 28, 40, 0.92), rgba(9, 12, 19, 0.94)),
+          #090c12;
+        border: 1px solid var(--line);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+      }
+
+      .section-label,
+      .card-kicker,
+      .code-label {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .top-grid {
+        margin-top: 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .overview {
+        padding: 24px;
+        border-radius: 28px;
+      }
+
+      .overview-value {
+        margin: 0;
+        font-size: clamp(42px, 6vw, 70px);
+        line-height: 1;
+        letter-spacing: -0.06em;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .meta-grid,
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 0;
+      }
+
+      .meta-item,
+      .stat-item,
+      .legend-item,
+      .modal-stat {
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .meta-item span,
+      .stat-item span,
+      .legend-label,
+      .legend-share,
+      .modal-stat span {
+        display: block;
+        color: #8e9bae;
+        font-size: 13px;
+      }
+
+      .meta-item strong,
+      .stat-item strong,
+      .modal-stat strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 18px;
+      }
+
+      .overview-main {
+        display: grid;
+        gap: 18px;
+        align-content: start;
+        cursor: pointer;
+      }
+
+      .overview-main:hover .overview-action,
+      .overview-main:focus-visible .overview-action {
+        color: var(--text);
+      }
+
+      .overview-main:focus-visible {
+        outline: none;
+      }
+
+      .overview-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .overview-action {
+        color: var(--muted);
+        font-size: 14px;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+
+      .donut-head {
+        display: block;
+      }
+
+      .donut-wrap {
+        margin-top: 6px;
+        display: grid;
+        grid-template-columns: minmax(240px, 270px) minmax(0, 1fr);
+        gap: 18px;
+        align-items: center;
+      }
+
+      .donut {
+        position: relative;
+        width: min(100%, 260px);
+        aspect-ratio: 1;
+        margin: 0 auto;
+        border-radius: 50%;
+        background: var(--slices, conic-gradient(var(--east) 0 25%, var(--ths) 25% 50%, var(--gold) 50% 75%, var(--margin) 75% 100%));
+        box-shadow: inset 0 0 36px rgba(255, 255, 255, 0.07);
+      }
+
+      .donut::after {
+        content: "";
+        position: absolute;
+        inset: 21%;
+        border-radius: 50%;
+        background: #090d14;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .donut-center {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .donut-center span {
+        color: var(--muted);
+        font-size: 13px;
+        letter-spacing: 0.08em;
+      }
+
+      .donut-center strong {
+        margin-top: 8px;
+        font-size: 18px;
+      }
+
+      .legend {
+        display: grid;
+        gap: 10px;
+      }
+
+      .legend-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .legend-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        flex: 0 0 auto;
+      }
+
+      .legend-item strong {
+        color: var(--text);
+      }
+
+      .legend-item strong[data-animated-value] {
+        min-width: 96px;
+        text-align: right;
+      }
+
+      .card[data-key="eastMoney"] .card-title {
+        color: var(--east);
+      }
+
+      .card[data-key="ths"] .card-title {
+        color: var(--ths);
+      }
+
+      .card[data-key="gold"] .card-title {
+        color: var(--gold);
+      }
+
+      .card[data-key="margin"] .card-title {
+        color: var(--margin);
+      }
+
+      .cards {
+        margin-top: 18px;
+        display: grid;
+        gap: 16px;
+      }
+
+      .subcards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        border-radius: 24px;
+        padding: 22px;
+        display: grid;
+        gap: 18px;
+        color: inherit;
+        cursor: pointer;
+        transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255, 93, 115, 0.24);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+      }
+
+      .card-top,
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .card-title,
+      .modal-title {
+        margin: 0;
+        font-size: 28px;
+      }
+
+      .card-action {
+        color: var(--muted);
+        font-size: 14px;
+        white-space: nowrap;
+      }
+
+      .card-value {
+        margin: 0;
+        font-size: clamp(38px, 5vw, 58px);
+        line-height: 1;
+        letter-spacing: -0.05em;
+      }
+
+      .trend-up {
+        color: var(--up) !important;
+      }
+
+      .trend-down {
+        color: var(--down) !important;
+      }
+
+      .trend-flat {
+        color: var(--flat) !important;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 30;
+      }
+
+      .modal.show {
+        display: flex;
+      }
+
+      .modal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(2, 4, 8, 0.8);
+        backdrop-filter: blur(14px);
+      }
+
+      .modal-panel {
+        position: relative;
+        z-index: 1;
+        width: min(960px, 100%);
+        border-radius: 28px;
+        padding: 24px;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 42px;
+        height: 42px;
+        border: 0;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.07);
+        color: var(--text);
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .modal-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        padding-right: 54px;
+      }
+
+      .chart-shell {
+        position: relative;
+        margin-top: 18px;
+        border-radius: 22px;
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      #lineChart {
+        width: 100%;
+        height: 340px;
+        display: block;
+      }
+
+      .chart-grid,
+      .chart-zero {
+        stroke: rgba(255, 255, 255, 0.12);
+        stroke-width: 1;
+      }
+
+      .chart-zero {
+        stroke: rgba(255, 255, 255, 0.24);
+        stroke-dasharray: 5 6;
+      }
+
+      .chart-label,
+      .chart-x {
+        fill: #8f9aac;
+        font-size: 12px;
+      }
+
+      .chart-line {
+        fill: none;
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .chart-area {
+        opacity: 1;
+      }
+
+      .chart-guide {
+        stroke: rgba(255, 255, 255, 0.28);
+        stroke-width: 1;
+        stroke-dasharray: 6 6;
+      }
+
+      .chart-guide {
+        stroke: rgba(255, 255, 255, 0.28);
+        stroke-width: 1;
+        stroke-dasharray: 6 6;
+      }
+
+      .chart-dot {
+        fill: #0b0f17;
+        stroke-width: 2;
+        cursor: pointer;
+      }
+
+      .chart-dot.is-active {
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.18));
+      }
+
+      .tooltip {
+        position: absolute;
+        min-width: 188px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(11, 15, 22, 0.96);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        pointer-events: none;
+        opacity: 0;
+        transform: translate(-50%, calc(-100% - 6px));
+        transition: opacity 0.18s ease;
+        z-index: 2;
+      }
+
+      .tooltip.show {
+        opacity: 1;
+      }
+
+      .tooltip-date {
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .tooltip-row {
+        margin-top: 6px;
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .tooltip-row strong {
+        font-size: 13px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.72s ease, transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 980px) {
+        body {
+          padding: 18px;
+        }
+
+        .top-grid,
+        .overview,
+        .donut-wrap,
+        .subcards,
+        .modal-header,
+        .modal-stats {
+          grid-template-columns: 1fr;
+        }
+
+        .top-grid,
+        .overview {
+          gap: 16px;
+        }
+
+        .meta-grid,
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .top-grid,
+        .overview,
+        .card,
+        .modal-panel {
+          padding: 18px;
+          border-radius: 22px;
+        }
+
+        .card-top,
+        .modal-header,
+        .donut-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .card-action {
+          white-space: normal;
+        }
+
+        #lineChart {
+          height: 280px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="top-grid">
+        <section class="overview reveal">
+          <div class="overview-main" id="overviewTrigger" role="button" tabindex="0">
+            <div class="overview-head">
+              <p class="section-label">资产总览</p>
+              <div class="overview-action">点击查看本月趋势</div>
+            </div>
+            <h2 class="overview-value" id="overviewTotal">--</h2>
+            <div class="meta-grid">
+              <div class="meta-item">
+                <span>较昨日</span>
+                <strong id="overviewDaily">--</strong>
+              </div>
+              <div class="meta-item">
+                <span>较上月末</span>
+                <strong id="overviewMonthly">--</strong>
+              </div>
+              <div class="meta-item">
+                <span>最新日期</span>
+                <strong id="overviewDate">--</strong>
+              </div>
             </div>
           </div>
-          <div class="composition-legend" id="composition-legend"></div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <section class="invest-cards-section">
-      <button type="button" class="invest-card invest-card--total" data-invest-target="total">
-        <div class="invest-card__header">
+        <section class="overview reveal">
+          <div class="donut-head">
+            <p class="section-label">资产组成</p>
+          </div>
+
+          <div class="donut-wrap">
+            <div class="donut" id="donutChart">
+              <div class="donut-center">
+                <span>总资产</span>
+                <strong id="donutTotal">--</strong>
+              </div>
+            </div>
+            <div class="legend" id="donutLegend"></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="cards">
+        <div class="subcards">
+          <article class="card reveal" data-key="eastMoney" role="button" tabindex="0">
+            <div class="card-top">
+              <div>
+                <p class="card-kicker">细分账户</p>
+                <h3 class="card-title">东方财富</h3>
+              </div>
+              <div class="card-action">点击查看本月趋势</div>
+            </div>
+            <p class="card-value" data-role="value">--</p>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span>较昨日</span>
+                <strong data-role="daily">--</strong>
+              </div>
+              <div class="stat-item">
+                <span>较上月末</span>
+                <strong data-role="monthly">--</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-key="ths" role="button" tabindex="0">
+            <div class="card-top">
+              <div>
+                <p class="card-kicker">细分账户</p>
+                <h3 class="card-title">同花顺</h3>
+              </div>
+              <div class="card-action">点击查看本月趋势</div>
+            </div>
+            <p class="card-value" data-role="value">--</p>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span>较昨日</span>
+                <strong data-role="daily">--</strong>
+              </div>
+              <div class="stat-item">
+                <span>较上月末</span>
+                <strong data-role="monthly">--</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-key="gold" role="button" tabindex="0">
+            <div class="card-top">
+              <div>
+                <p class="card-kicker">细分账户</p>
+                <h3 class="card-title">黄金</h3>
+              </div>
+              <div class="card-action">点击查看本月趋势</div>
+            </div>
+            <p class="card-value" data-role="value">--</p>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span>较昨日</span>
+                <strong data-role="daily">--</strong>
+              </div>
+              <div class="stat-item">
+                <span>较上月末</span>
+                <strong data-role="monthly">--</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-key="margin" role="button" tabindex="0">
+            <div class="card-top">
+              <div>
+                <p class="card-kicker">细分账户</p>
+                <h3 class="card-title">融资余额</h3>
+              </div>
+              <div class="card-action">点击查看本月趋势</div>
+            </div>
+            <p class="card-value" data-role="value">--</p>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span>较昨日</span>
+                <strong data-role="daily">--</strong>
+              </div>
+              <div class="stat-item">
+                <span>较上月末</span>
+                <strong data-role="monthly">--</strong>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal" id="trendModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close></div>
+      <section class="modal-panel">
+        <button class="modal-close" type="button" aria-label="关闭" data-close>×</button>
+        <div class="modal-header">
           <div>
-            <p class="invest-card__kicker">净资产总览</p>
-            <h2 class="invest-card__title">总资产</h2>
+            <p class="section-label">本月变化趋势</p>
+            <h3 class="modal-title" id="modalTitle">--</h3>
           </div>
-          <span class="invest-card__action">查看月度趋势</span>
-        </div>
-        <strong class="invest-card__value" data-role="value">--</strong>
-        <div class="invest-card__stats">
-          <div class="invest-card__stat">
-            <span>较昨日</span>
-            <strong data-role="daily-change">--</strong>
-          </div>
-          <div class="invest-card__stat">
-            <span>较上月末</span>
-            <strong data-role="monthly-change">--</strong>
+          <div class="modal-stats">
+            <div class="modal-stat">
+              <span>当前金额</span>
+              <strong id="modalValue">--</strong>
+            </div>
+            <div class="modal-stat">
+              <span>本月变化</span>
+              <strong id="modalChange">--</strong>
+            </div>
           </div>
         </div>
-        <p class="invest-card__formula">总资产 = 东方财富 + 同花顺 + 黄金 - 融资余额</p>
-      </button>
 
-      <div class="invest-subcard-grid">
-        <button type="button" class="invest-card" data-invest-target="eastMoney">
-          <div class="invest-card__header">
-            <div>
-              <p class="invest-card__kicker">细分账户</p>
-              <h2 class="invest-card__title">东方财富</h2>
-            </div>
-            <span class="invest-card__action">展开图表</span>
-          </div>
-          <strong class="invest-card__value" data-role="value">--</strong>
-          <div class="invest-card__stats">
-            <div class="invest-card__stat">
-              <span>较昨日</span>
-              <strong data-role="daily-change">--</strong>
-            </div>
-            <div class="invest-card__stat">
-              <span>较上月末</span>
-              <strong data-role="monthly-change">--</strong>
-            </div>
-          </div>
-        </button>
-
-        <button type="button" class="invest-card" data-invest-target="ths">
-          <div class="invest-card__header">
-            <div>
-              <p class="invest-card__kicker">细分账户</p>
-              <h2 class="invest-card__title">同花顺</h2>
-            </div>
-            <span class="invest-card__action">展开图表</span>
-          </div>
-          <strong class="invest-card__value" data-role="value">--</strong>
-          <div class="invest-card__stats">
-            <div class="invest-card__stat">
-              <span>较昨日</span>
-              <strong data-role="daily-change">--</strong>
-            </div>
-            <div class="invest-card__stat">
-              <span>较上月末</span>
-              <strong data-role="monthly-change">--</strong>
-            </div>
-          </div>
-        </button>
-
-        <button type="button" class="invest-card" data-invest-target="gold">
-          <div class="invest-card__header">
-            <div>
-              <p class="invest-card__kicker">细分账户</p>
-              <h2 class="invest-card__title">黄金</h2>
-            </div>
-            <span class="invest-card__action">展开图表</span>
-          </div>
-          <strong class="invest-card__value" data-role="value">--</strong>
-          <div class="invest-card__stats">
-            <div class="invest-card__stat">
-              <span>较昨日</span>
-              <strong data-role="daily-change">--</strong>
-            </div>
-            <div class="invest-card__stat">
-              <span>较上月末</span>
-              <strong data-role="monthly-change">--</strong>
-            </div>
-          </div>
-        </button>
-
-        <button type="button" class="invest-card" data-invest-target="margin">
-          <div class="invest-card__header">
-            <div>
-              <p class="invest-card__kicker">细分账户</p>
-              <h2 class="invest-card__title">融资余额</h2>
-            </div>
-            <span class="invest-card__action">展开图表</span>
-          </div>
-          <strong class="invest-card__value" data-role="value">--</strong>
-          <div class="invest-card__stats">
-            <div class="invest-card__stat">
-              <span>较昨日</span>
-              <strong data-role="daily-change">--</strong>
-            </div>
-            <div class="invest-card__stat">
-              <span>较上月末</span>
-              <strong data-role="monthly-change">--</strong>
-            </div>
-          </div>
-        </button>
-      </div>
-    </section>
-  </section>
-
-  <div class="invest-modal" id="invest-modal" hidden aria-hidden="true">
-    <div class="invest-modal__backdrop" data-modal-close></div>
-    <div class="invest-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="invest-modal-title">
-      <button type="button" class="invest-modal__close" data-modal-close aria-label="关闭图表">×</button>
-
-      <div class="invest-modal__header">
-        <div>
-          <p class="invest-section-label" id="invest-modal-kicker">月度趋势</p>
-          <h3 class="invest-modal__title" id="invest-modal-title">--</h3>
-          <p class="invest-modal__reference" id="invest-modal-reference">较上月最后一天 --</p>
+        <div class="chart-shell">
+          <svg id="lineChart" viewBox="0 0 760 320" preserveAspectRatio="none"></svg>
+          <div class="tooltip" id="chartTooltip" aria-hidden="true"></div>
         </div>
-        <div class="invest-modal__summary">
-          <div>
-            <span>当前金额</span>
-            <strong id="invest-modal-value">--</strong>
-          </div>
-          <div>
-            <span>本月变化</span>
-            <strong id="invest-modal-change">--</strong>
-          </div>
-        </div>
-      </div>
-
-      <div class="invest-modal__chart-frame">
-        <svg id="invest-line-chart" viewBox="0 0 760 320" preserveAspectRatio="none" aria-label="月度趋势图"></svg>
-      </div>
-      <div class="invest-modal__axis" id="invest-modal-axis"></div>
+      </section>
     </div>
-  </div>
+
+    <script>
+      const metricConfig = {
+        total: {
+          label: "总资产",
+          color: getCssVar("--total"),
+          valueOf(record) {
+            return record.eastMoney + record.ths + record.gold - record.margin;
+          }
+        },
+        eastMoney: {
+          label: "东方财富",
+          color: getCssVar("--east"),
+          valueOf(record) {
+            return record.eastMoney;
+          }
+        },
+        ths: {
+          label: "同花顺",
+          color: getCssVar("--ths"),
+          valueOf(record) {
+            return record.ths;
+          }
+        },
+        gold: {
+          label: "黄金",
+          color: getCssVar("--gold"),
+          valueOf(record) {
+            return record.gold;
+          }
+        },
+        margin: {
+          label: "融资余额",
+          color: getCssVar("--margin"),
+          valueOf(record) {
+            return record.margin;
+          }
+        }
+      };
+
+      const donutKeys = ["eastMoney", "ths", "gold", "margin"];
+      const currency = new Intl.NumberFormat("zh-CN", {
+        style: "currency",
+        currency: "CNY",
+        maximumFractionDigits: 0
+      });
+
+      const data = readData();
+      const latest = data[data.length - 1];
+      const previous = data[data.length - 2] || latest;
+      const previousMonthClose = findPreviousMonthClose(data);
+      let activeMetricKey = null;
+      let activeChartPoints = [];
+      const metrics = Object.fromEntries(
+        Object.entries(metricConfig).map(([key, config]) => [key, createMetricState(config, data, latest, previous, previousMonthClose)])
+      );
+
+      renderOverview(true);
+      renderCards(true);
+      bindModal();
+      setupRevealAnimations();
+
+      function readData() {
+        const parsed = DAILY_DATA.map((item) => ({
+          ...item,
+          dateObject: parseDate(item.date)
+        }));
+
+        parsed.sort((a, b) => a.dateObject - b.dateObject);
+        return parsed;
+      }
+
+      function parseDate(value) {
+        const parts = value.split("-").map(Number);
+        return new Date(parts[0], parts[1] - 1, parts[2]);
+      }
+
+      function findPreviousMonthClose(records) {
+        const anchor = records[records.length - 1].dateObject;
+        const targetYear = anchor.getMonth() === 0 ? anchor.getFullYear() - 1 : anchor.getFullYear();
+        const targetMonth = anchor.getMonth() === 0 ? 11 : anchor.getMonth() - 1;
+        const candidates = records.filter((record) => record.dateObject.getFullYear() === targetYear && record.dateObject.getMonth() === targetMonth);
+        return candidates[candidates.length - 1] || records[0];
+      }
+
+      function createMetricState(config, records, latestRecord, previousRecord, monthClose) {
+        const current = config.valueOf(latestRecord);
+        const daily = current - config.valueOf(previousRecord);
+        const monthlyBase = config.valueOf(monthClose);
+        const monthly = current - monthlyBase;
+
+        return {
+          label: config.label,
+          color: config.color,
+          current,
+          daily,
+          monthly,
+          baselineDate: monthClose.date,
+          latestDate: latestRecord.date,
+          series: records
+            .filter((record) => record.dateObject >= monthClose.dateObject)
+            .map((record) => ({
+              date: record.date,
+              value: config.valueOf(record),
+              delta: config.valueOf(record) - monthlyBase
+            }))
+        };
+      }
+
+      function renderOverview(animated) {
+        const total = metrics.total;
+        if (animated) {
+          animateNumber("overviewTotal", 0, total.current, formatMoney, 1100);
+          animateNumber("overviewDaily", 0, total.daily, formatSignedMoney, 950);
+          animateNumber("overviewMonthly", 0, total.monthly, formatSignedMoney, 950);
+        } else {
+          writeText("overviewTotal", formatMoney(total.current));
+          writeText("overviewDaily", formatSignedMoney(total.daily));
+          writeText("overviewMonthly", formatSignedMoney(total.monthly));
+        }
+        applyTrend(document.getElementById("overviewDaily"), total.daily);
+        applyTrend(document.getElementById("overviewMonthly"), total.monthly);
+        writeText("overviewDate", latest.date);
+        if (animated) {
+          animateNumber("donutTotal", 0, total.current, formatMoney, 1100);
+        } else {
+          writeText("donutTotal", formatMoney(total.current));
+        }
+
+        renderDonut(animated);
+      }
+
+      function renderDonut(animated) {
+        const legend = document.getElementById("donutLegend");
+        const donut = document.getElementById("donutChart");
+        const segments = donutKeys.map((key) => ({
+          key,
+          label: metrics[key].label,
+          color: metrics[key].color,
+          value: Math.max(metrics[key].current, 0)
+        }));
+
+        const sum = segments.reduce((acc, item) => acc + item.value, 0) || 1;
+        let cursor = 0;
+        const slices = segments
+          .map((item) => {
+            const start = cursor;
+            cursor += (item.value / sum) * 100;
+            return item.color + " " + start.toFixed(2) + "% " + cursor.toFixed(2) + "%";
+          })
+          .join(", ");
+
+        if (animated) {
+          animateDonut(donut, segments, sum);
+        } else {
+          donut.style.setProperty("--slices", "conic-gradient(" + slices + ")");
+        }
+        legend.innerHTML = segments
+          .map((item) => {
+            const share = ((item.value / sum) * 100).toFixed(1) + "%";
+            return (
+              '<div class="legend-item">' +
+              '<div class="legend-left">' +
+              '<span class="legend-color" style="background:' + item.color + '"></span>' +
+              '<div>' +
+              '<span class="legend-label">' + item.label + '</span>' +
+              '<span class="legend-share">占比 ' + share + '</span>' +
+              '</div>' +
+              '</div>' +
+              '<strong data-animated-value="' + item.value + '">0</strong>' +
+              '</div>'
+            );
+          })
+          .join("");
+
+        legend.querySelectorAll("strong[data-animated-value]").forEach((element) => {
+          const target = Number(element.dataset.animatedValue);
+          if (animated) {
+            animateNumberInElement(element, 0, target, formatMoney, 1000);
+          } else {
+            element.textContent = formatMoney(target);
+          }
+        });
+      }
+
+      function renderCards(animated) {
+        document.querySelectorAll(".card[data-key]").forEach((card) => {
+          const state = metrics[card.dataset.key];
+          if (animated) {
+            animateNumberInElement(card.querySelector('[data-role="value"]'), 0, state.current, formatMoney, 1000);
+            animateNumberInElement(card.querySelector('[data-role="daily"]'), 0, state.daily, formatSignedMoney, 900);
+            animateNumberInElement(card.querySelector('[data-role="monthly"]'), 0, state.monthly, formatSignedMoney, 900);
+          } else {
+            card.querySelector('[data-role="value"]').textContent = formatMoney(state.current);
+            card.querySelector('[data-role="daily"]').textContent = formatSignedMoney(state.daily);
+            card.querySelector('[data-role="monthly"]').textContent = formatSignedMoney(state.monthly);
+          }
+          applyTrend(card.querySelector('[data-role="daily"]'), state.daily);
+          applyTrend(card.querySelector('[data-role="monthly"]'), state.monthly);
+        });
+      }
+
+      function bindModal() {
+        const modal = document.getElementById("trendModal");
+        const overviewTrigger = document.getElementById("overviewTrigger");
+        overviewTrigger.addEventListener("click", () => openModal("total"));
+        overviewTrigger.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openModal("total");
+          }
+        });
+
+        document.querySelectorAll(".card[data-key]").forEach((card) => {
+          card.addEventListener("click", () => openModal(card.dataset.key));
+          card.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              openModal(card.dataset.key);
+            }
+          });
+        });
+
+        modal.querySelectorAll("[data-close]").forEach((element) => {
+          element.addEventListener("click", closeModal);
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && modal.classList.contains("show")) {
+            closeModal();
+          }
+        });
+      }
+
+      function openModal(key) {
+        const modal = document.getElementById("trendModal");
+        const state = metrics[key];
+        activeMetricKey = key;
+        writeText("modalTitle", state.label);
+        writeText("modalValue", formatMoney(state.current));
+        writeText("modalChange", formatSignedMoney(state.monthly));
+        applyTrend(document.getElementById("modalChange"), state.monthly);
+        renderLineChart(state);
+        modal.classList.add("show");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("trendModal");
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        activeChartPoints = [];
+        hideTooltip();
+      }
+
+      function renderLineChart(state) {
+        const svg = document.getElementById("lineChart");
+        const tooltip = document.getElementById("chartTooltip");
+        const width = 760;
+        const height = 320;
+        const padding = { top: 24, right: 28, bottom: 42, left: 72 };
+        const plotWidth = width - padding.left - padding.right;
+        const plotHeight = height - padding.top - padding.bottom;
+        const points = state.series;
+        const values = points.map((point) => point.delta);
+        const color = trendColor(state.monthly);
+
+        let min = Math.min(...values, 0);
+        let max = Math.max(...values, 0);
+        if (min === max) {
+          min -= 1000;
+          max += 1000;
+        }
+
+        const x = (index) => {
+          if (points.length === 1) {
+            return padding.left + plotWidth / 2;
+          }
+          return padding.left + (plotWidth * index) / (points.length - 1);
+        };
+
+        const y = (value) => padding.top + ((max - value) / (max - min)) * plotHeight;
+        const linePoints = points.map((point, index) => x(index) + "," + y(point.delta)).join(" ");
+        activeChartPoints = points.map((point, index) => ({
+          index,
+          date: point.date,
+          delta: point.delta,
+          dayChange: point.value - (index > 0 ? points[index - 1].value : points[index].value),
+          x: x(index),
+          y: y(point.delta)
+        }));
+        const areaPoints =
+          padding.left +
+          "," +
+          (padding.top + plotHeight) +
+          " " +
+          linePoints +
+          " " +
+          x(points.length - 1) +
+          "," +
+          (padding.top + plotHeight);
+
+        const ticks = [max, (max + min) / 2, min];
+        svg.innerHTML =
+          '<defs>' +
+          '<linearGradient id="chartAreaGradient" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%" stop-color="' + color + '" stop-opacity="0.34"></stop>' +
+          '<stop offset="100%" stop-color="' + color + '" stop-opacity="0"></stop>' +
+          '</linearGradient>' +
+          '<clipPath id="chartRevealClip"><rect id="chartRevealRect" x="0" y="0" width="0" height="' + height + '"></rect></clipPath>' +
+          '</defs>' +
+          ticks
+            .map((tick) => {
+              const cy = y(tick);
+              return (
+                '<line class="chart-grid" x1="' + padding.left + '" y1="' + cy + '" x2="' + (padding.left + plotWidth) + '" y2="' + cy + '"></line>' +
+                '<text class="chart-label" x="' + (padding.left - 14) + '" y="' + (cy + 4) + '" text-anchor="end">' +
+                escapeHtml(formatShortSigned(tick)) +
+                "</text>"
+              );
+            })
+            .join("") +
+          '<line class="chart-zero" x1="' +
+          padding.left +
+          '" y1="' +
+          y(0) +
+          '" x2="' +
+          (padding.left + plotWidth) +
+          '" y2="' +
+          y(0) +
+          '"></line>' +
+          '<line class="chart-guide" id="chartGuideLine" x1="' +
+          activeChartPoints[activeChartPoints.length - 1].x +
+          '" y1="' +
+          padding.top +
+          '" x2="' +
+          activeChartPoints[activeChartPoints.length - 1].x +
+          '" y2="' +
+          (padding.top + plotHeight) +
+          '"></line>' +
+          '<polygon class="chart-area" clip-path="url(#chartRevealClip)" fill="url(#chartAreaGradient)" points="' +
+          areaPoints +
+          '"></polygon>' +
+          '<polyline class="chart-line" clip-path="url(#chartRevealClip)" stroke="' +
+          color +
+          '" id="animatedChartLine" points="' +
+          linePoints +
+          '"></polyline>' +
+          points
+            .map((point, index) => {
+              const dayChange = point.value - (index > 0 ? points[index - 1].value : points[index].value);
+              return (
+                '<circle class="chart-dot" clip-path="url(#chartRevealClip)" data-index="' +
+                index +
+                '" data-date="' +
+                point.date +
+                '" data-delta="' +
+                point.delta +
+                '" data-day-change="' +
+                dayChange +
+                '" cx="' +
+                x(index) +
+                '" cy="' +
+                y(point.delta) +
+                '" r="4.5" stroke="' +
+                color +
+                '"></circle>'
+              );
+            })
+            .join("") +
+          buildXLabels(points, x, height, padding.bottom);
+
+        svg.onmousemove = (event) => followNearestPoint(event, svg, tooltip);
+        svg.onmouseleave = hideTooltip;
+        svg.onclick = (event) => followNearestPoint(event, svg, tooltip);
+
+        const lastDot = svg.querySelector('.chart-dot[data-index="' + (points.length - 1) + '"]');
+        if (lastDot) {
+          showTooltip(lastDot, tooltip);
+        }
+
+        animateChartLine();
+      }
+
+      function followNearestPoint(event, svg, tooltip) {
+        if (!activeChartPoints.length) {
+          return;
+        }
+        const rect = svg.getBoundingClientRect();
+        const svgX = ((event.clientX - rect.left) / rect.width) * 760;
+        const nearest = activeChartPoints.reduce((best, point) => {
+          if (!best) {
+            return point;
+          }
+          return Math.abs(point.x - svgX) < Math.abs(best.x - svgX) ? point : best;
+        }, null);
+
+        const dot = svg.querySelector('.chart-dot[data-index="' + nearest.index + '"]');
+        if (dot) {
+          showTooltip(dot, tooltip);
+        }
+      }
+
+      function showTooltip(dot, tooltip) {
+        const shell = document.querySelector(".chart-shell");
+        if (!shell || !dot || !tooltip) {
+          return;
+        }
+
+        shell.querySelectorAll(".chart-dot").forEach((item) => item.classList.remove("is-active"));
+        dot.classList.add("is-active");
+
+        const delta = Number(dot.dataset.delta);
+        const dayChange = Number(dot.dataset.dayChange);
+        const guide = document.getElementById("chartGuideLine");
+        tooltip.innerHTML =
+          '<div class="tooltip-date">' +
+          escapeHtml(dot.dataset.date) +
+          '</div>' +
+          '<div class="tooltip-row"><span>较上月变化</span><strong class="' + trendClass(delta) + '">' + escapeHtml(formatSignedMoney(delta)) + '</strong></div>' +
+          '<div class="tooltip-row"><span>当日变化</span><strong class="' + trendClass(dayChange) + '">' + escapeHtml(formatSignedMoney(dayChange)) + '</strong></div>';
+
+        const shellRect = shell.getBoundingClientRect();
+        const dotRect = dot.getBoundingClientRect();
+        tooltip.style.left = dotRect.left - shellRect.left + dotRect.width / 2 + "px";
+        tooltip.style.top = dotRect.top - shellRect.top + 4 + "px";
+        tooltip.classList.add("show");
+        tooltip.setAttribute("aria-hidden", "false");
+        if (guide) {
+          guide.setAttribute("x1", dot.getAttribute("cx"));
+          guide.setAttribute("x2", dot.getAttribute("cx"));
+        }
+      }
+
+      function hideTooltip() {
+        const tooltip = document.getElementById("chartTooltip");
+        const shell = document.querySelector(".chart-shell");
+        if (shell) {
+          shell.querySelectorAll(".chart-dot").forEach((item) => item.classList.remove("is-active"));
+        }
+        if (!tooltip) {
+          return;
+        }
+        tooltip.classList.remove("show");
+        tooltip.setAttribute("aria-hidden", "true");
+      }
+
+      function buildXLabels(points, x, height, bottomPadding) {
+        const indexes = Array.from(new Set([0, Math.floor((points.length - 1) / 2), points.length - 1]));
+        return indexes
+          .map((index) => {
+            return (
+              '<text class="chart-x" x="' +
+              x(index) +
+              '" y="' +
+              (height - bottomPadding / 2 + 10) +
+              '" text-anchor="middle">' +
+              escapeHtml(points[index].date.slice(5)) +
+              "</text>"
+            );
+          })
+          .join("");
+      }
+
+      function writeText(id, text) {
+        document.getElementById(id).textContent = text;
+      }
+
+      function animateNumber(id, from, to, formatter, duration) {
+        animateNumberInElement(document.getElementById(id), from, to, formatter, duration);
+      }
+
+      function animateNumberInElement(element, from, to, formatter, duration) {
+        const start = performance.now();
+        const diff = to - from;
+
+        function frame(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          element.textContent = formatter(from + diff * eased);
+          if (progress < 1) {
+            requestAnimationFrame(frame);
+          }
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      function animateDonut(donut, segments, total) {
+        const start = performance.now();
+        const duration = 1200;
+
+        function frame(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          let cursor = 0;
+          const slices = segments
+            .map((item) => {
+              const scaled = item.value * eased;
+              const startAt = cursor;
+              cursor += (scaled / total) * 100;
+              return item.color + " " + startAt.toFixed(2) + "% " + cursor.toFixed(2) + "%";
+            })
+            .join(", ");
+          donut.style.setProperty("--slices", "conic-gradient(" + slices + ")");
+          if (progress < 1) {
+            requestAnimationFrame(frame);
+          }
+        }
+
+        donut.style.setProperty("--slices", "conic-gradient(" + segments[0].color + " 0 0%)");
+        requestAnimationFrame(frame);
+      }
+
+      function setupRevealAnimations() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.18 }
+        );
+
+        document.querySelectorAll(".reveal").forEach((element, index) => {
+          element.style.transitionDelay = Math.min(index * 80, 240) + "ms";
+          observer.observe(element);
+        });
+
+        const overview = document.querySelector(".overview.reveal");
+        if (overview) {
+          overview.classList.add("is-visible");
+        }
+      }
+
+      function animateChartLine() {
+        const line = document.getElementById("animatedChartLine");
+        const clip = document.getElementById("chartRevealRect");
+        if (!line) {
+          return;
+        }
+        requestAnimationFrame(() => {
+          const length = line.getTotalLength();
+          if (clip) {
+            clip.style.transition = "none";
+            clip.setAttribute("width", "0");
+          }
+          line.style.transition = "none";
+          line.style.strokeDasharray = String(length);
+          line.style.strokeDashoffset = String(length);
+          line.getBoundingClientRect();
+          requestAnimationFrame(() => {
+            line.style.transition = "stroke-dashoffset 2.4s cubic-bezier(0.22, 1, 0.36, 1)";
+            line.style.strokeDashoffset = "0";
+            if (clip) {
+              clip.style.transition = "width 2.4s cubic-bezier(0.22, 1, 0.36, 1)";
+              clip.setAttribute("width", "760");
+            }
+          });
+        });
+      }
+
+      function formatMoney(value) {
+        return currency.format(Math.round(value));
+      }
+
+      function formatSignedMoney(value) {
+        if (value === 0) {
+          return "±" + formatMoney(0).replace(/^[-+]?/, "");
+        }
+        return (value > 0 ? "+" : "-") + formatMoney(Math.abs(value)).replace(/^[-+]?/, "");
+      }
+
+      function formatShortSigned(value) {
+        if (value === 0) {
+          return "0";
+        }
+        const abs = Math.abs(Math.round(value));
+        const text = abs >= 10000 ? (abs / 10000).toFixed(1).replace(/\.0$/, "") + "万" : abs.toLocaleString("zh-CN");
+        return (value > 0 ? "+" : "-") + text;
+      }
+
+      function applyTrend(element, value) {
+        element.classList.remove("trend-up", "trend-down", "trend-flat");
+        element.classList.add(trendClass(value));
+      }
+
+      function trendClass(value) {
+        if (value > 0) {
+          return "trend-up";
+        }
+        if (value < 0) {
+          return "trend-down";
+        }
+        return "trend-flat";
+      }
+
+      function trendColor(value) {
+        if (value > 0) {
+          return getCssVar("--up");
+        }
+        if (value < 0) {
+          return getCssVar("--down");
+        }
+        return getCssVar("--flat");
+      }
+
+      function getCssVar(name) {
+        return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+    </script>
+  </body>
+</html>
+
+
+  
+
 </article>
+
+
 
               </div>
             </div>
@@ -551,8 +1707,6 @@
 
 
 
-
-  <script defer src="/js/invest.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
