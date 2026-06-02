@@ -1,0 +1,537 @@
+body {
+  background:
+    radial-gradient(circle at top left, rgba(255, 72, 107, 0.14), transparent 28%),
+    radial-gradient(circle at top right, rgba(255, 184, 77, 0.12), transparent 30%),
+    linear-gradient(180deg, #05070b 0%, #05070b 100%);
+  color: #eef2f8;
+}
+
+main {
+  background: transparent;
+}
+
+#navbar {
+  background: rgba(8, 11, 16, 0.84) !important;
+  backdrop-filter: blur(18px);
+}
+
+#banner .mask {
+  background:
+    linear-gradient(135deg, rgba(5, 7, 11, 0.92), rgba(9, 13, 20, 0.8)) !important;
+}
+
+#banner .h2,
+#banner #subtitle {
+  color: #f6f8fc;
+  letter-spacing: 0.08em;
+}
+
+#board {
+  margin-top: -4rem;
+  background: transparent;
+  box-shadow: none;
+  border: 0;
+}
+
+.invest-page {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.invest-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+    rgba(6, 9, 14, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
+  pointer-events: none;
+}
+
+.invest-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem 0 0.5rem;
+}
+
+.invest-hero-card,
+.invest-overview-card,
+.invest-card,
+.invest-modal__dialog {
+  background:
+    linear-gradient(145deg, rgba(20, 24, 34, 0.92), rgba(8, 11, 18, 0.92)),
+    #090c12;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+}
+
+.invest-hero-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.9fr);
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.invest-eyebrow,
+.invest-section-label,
+.invest-card__kicker,
+.invest-update-hint__label {
+  margin: 0 0 0.6rem;
+  color: #9aa6ba;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.invest-title {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-family: "Avenir Next", "PingFang SC", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+}
+
+.invest-summary {
+  margin: 0.85rem 0 0;
+  max-width: 42rem;
+  color: #c0cada;
+  line-height: 1.75;
+}
+
+.invest-update-hint {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 1.2rem;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 87, 123, 0.12), rgba(255, 200, 84, 0.05));
+  border: 1px solid rgba(255, 113, 153, 0.16);
+}
+
+.invest-update-hint__path {
+  color: #fff4f4;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  word-break: break-all;
+}
+
+.invest-update-hint__tip {
+  color: #bcc7d8;
+  line-height: 1.7;
+}
+
+.invest-overview-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 1.2rem;
+  padding: 1.5rem;
+  border-radius: 28px;
+}
+
+.invest-overview-card__main,
+.invest-overview-card__side {
+  min-width: 0;
+}
+
+.invest-pnl-value {
+  margin-top: 0.2rem;
+  font-size: clamp(2.4rem, 4vw, 4.2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.invest-pnl-reference,
+.invest-donut-note,
+.invest-card__formula,
+.invest-card__action,
+.invest-modal__reference,
+.invest-modal__axis {
+  color: #9ba7b7;
+}
+
+.invest-overview-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: 1.4rem;
+}
+
+.invest-overview-meta__item,
+.invest-card__stat,
+.invest-modal__summary > div,
+.composition-legend__item {
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.invest-overview-meta__item span,
+.invest-card__stat span,
+.invest-modal__summary span,
+.composition-legend__label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #8f9cae;
+  font-size: 0.86rem;
+}
+
+.invest-overview-meta__item strong,
+.invest-card__stat strong,
+.invest-modal__summary strong,
+.composition-legend__value {
+  font-size: 1rem;
+  color: #f4f6fb;
+}
+
+.invest-donut-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.invest-donut-wrap {
+  display: grid;
+  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.composition-donut {
+  position: relative;
+  width: min(100%, 250px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: var(--chart-slices, conic-gradient(#ff7a59 0 25%, #f7be38 25% 50%, #4eb7ff 50% 75%, #7488ff 75% 100%));
+  box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.06);
+}
+
+.composition-donut::after {
+  content: "";
+  position: absolute;
+  inset: 20%;
+  border-radius: 50%;
+  background: #090d14;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.composition-donut__center {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  text-align: center;
+}
+
+.composition-donut__center span {
+  color: #9ca8b9;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+.composition-donut__center strong {
+  font-size: 1.1rem;
+  color: #f7f9fc;
+}
+
+.composition-legend {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.composition-legend__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.composition-legend__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.composition-legend__swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.composition-legend__share {
+  color: #7f8a9c;
+  font-size: 0.82rem;
+}
+
+.invest-cards-section {
+  display: grid;
+  gap: 1rem;
+}
+
+.invest-subcard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.invest-card {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.3rem;
+  border-radius: 24px;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.invest-card:hover,
+.invest-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(255, 108, 141, 0.28);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.34);
+  outline: none;
+}
+
+.invest-card--total {
+  padding: 1.5rem;
+  background:
+    linear-gradient(135deg, rgba(255, 80, 120, 0.16), rgba(255, 192, 94, 0.08) 42%, rgba(10, 13, 21, 0.92) 100%),
+    #090c12;
+}
+
+.invest-card__header,
+.invest-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.invest-card__title,
+.invest-modal__title {
+  margin: 0;
+  font-size: 1.45rem;
+  color: #f7f9fc;
+}
+
+.invest-card__action {
+  white-space: nowrap;
+  font-size: 0.84rem;
+}
+
+.invest-card__value {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+}
+
+.invest-card__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.invest-card__formula {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.trend-up {
+  color: #ff667d !important;
+}
+
+.trend-down {
+  color: #4fce8f !important;
+}
+
+.trend-flat {
+  color: #99a4b4 !important;
+}
+
+.invest-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+}
+
+.invest-modal[hidden] {
+  display: none;
+}
+
+.invest-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 5, 9, 0.76);
+  backdrop-filter: blur(14px);
+}
+
+.invest-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(920px, 100%);
+  padding: 1.4rem;
+  border-radius: 28px;
+}
+
+.invest-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #e9edf3;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.invest-modal__summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  padding-right: 2.8rem;
+}
+
+.invest-modal__chart-frame {
+  margin-top: 1.25rem;
+  height: 340px;
+  padding: 0.9rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#invest-line-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.invest-modal__axis {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.9rem;
+  font-size: 0.88rem;
+}
+
+.chart-grid-line,
+.chart-zero-line {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1;
+}
+
+.chart-zero-line {
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-dasharray: 5 6;
+}
+
+.chart-axis-label,
+.chart-x-label {
+  fill: #8f9aad;
+  font-size: 12px;
+}
+
+.chart-area {
+  fill: url(#lineAreaGradient);
+}
+
+.chart-line {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart-dot {
+  stroke-width: 2;
+  fill: #0b1018;
+}
+
+@media (max-width: 991px) {
+  #board {
+    margin-top: -2.5rem;
+  }
+
+  .invest-hero-card,
+  .invest-overview-card,
+  .invest-donut-wrap,
+  .invest-subcard-grid,
+  .invest-modal__header,
+  .invest-modal__summary {
+    grid-template-columns: 1fr;
+  }
+
+  .invest-modal__summary {
+    padding-right: 0;
+  }
+
+  .invest-overview-meta,
+  .invest-card__stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .invest-shell {
+    gap: 1rem;
+    padding-top: 1.4rem;
+  }
+
+  .invest-hero-card,
+  .invest-overview-card,
+  .invest-card,
+  .invest-modal__dialog {
+    padding: 1.05rem;
+    border-radius: 20px;
+  }
+
+  .invest-donut-head,
+  .invest-card__header,
+  .invest-modal__header,
+  .invest-modal__axis {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .invest-card__action {
+    white-space: normal;
+  }
+
+  .invest-modal {
+    padding: 0.8rem;
+  }
+
+  .invest-modal__chart-frame {
+    height: 280px;
+    padding: 0.55rem;
+  }
+}
