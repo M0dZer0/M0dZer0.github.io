@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="tkTSGdOa3WJNsorBfR4KZm">
+<head data-page-node-id="ItQnJdBEg8k9zHPESgsuve">
+  <meta charset="UTF-8" data-page-node-id="KBlM1Nz48DC4Pk8hdPBwci">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="3OjlzildrRukBvHlBQx76K">
+  <title>A股科技板块美股映射报告｜2026-08-31</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --ink: #172033;
+      --muted: #667085;
+      --line: #dfe5ee;
+      --navy: #173b6c;
+      --blue: #2e67ad;
+      --blue-soft: #eaf2fb;
+      --red: #d83445;
+      --red-soft: #fff0f1;
+      --green: #168f55;
+      --green-soft: #eaf8f0;
+      --amber: #a66b11;
+      --amber-soft: #fff7e7;
+      --shadow: 0 10px 34px rgba(24, 48, 84, 0.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    header {
+      color: #fff;
+      background: linear-gradient(135deg, #102f56 0%, #1f5f9f 62%, #3d86c7 100%);
+      padding: 58px 0 44px;
+    }
+    .eyebrow { font-size: 14px; letter-spacing: .14em; opacity: .78; text-transform: uppercase; }
+    h1 { margin: 10px 0 12px; font-size: clamp(30px, 4vw, 50px); line-height: 1.18; letter-spacing: -.03em; }
+    .subtitle { max-width: 920px; margin: 0; font-size: 18px; opacity: .92; }
+    .status-line { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .status-chip { padding: 7px 12px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.10); border-radius: 999px; font-size: 14px; }
+    nav { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    nav .wrap { display: flex; gap: 18px; overflow-x: auto; padding-top: 12px; padding-bottom: 12px; white-space: nowrap; }
+    nav a { font-size: 14px; font-weight: 650; color: #40506a; }
+    main { padding: 28px 0 64px; }
+    section { margin: 28px 0; }
+    h2 { margin: 0 0 16px; font-size: 27px; line-height: 1.3; color: var(--navy); }
+    h3 { margin: 0 0 8px; font-size: 20px; color: #233a5d; }
+    .lead { font-size: 19px; color: #3f4c61; }
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); }
+    .metric { font-size: 30px; font-weight: 800; line-height: 1.15; letter-spacing: -.02em; color: var(--navy); }
+    .metric.red { color: var(--red); }
+    .metric.green { color: var(--green); }
+    .label { color: var(--muted); font-size: 14px; }
+    .tag { display: inline-flex; align-items: center; padding: 4px 9px; border-radius: 999px; font-size: 13px; font-weight: 700; margin: 2px 4px 2px 0; }
+    .tag.core { background: var(--red-soft); color: #ad2031; }
+    .tag.direct { background: var(--blue-soft); color: #24598f; }
+    .tag.watch { background: var(--amber-soft); color: #835309; }
+    .tag.risk { background: var(--green-soft); color: #146b43; }
+    .conclusion { border-left: 5px solid var(--red); background: linear-gradient(90deg, #fff5f5, #fff); }
+    .conclusion strong { color: #9e2532; }
+    .note { border-left: 4px solid #e3a63b; background: #fffaf0; padding: 14px 16px; border-radius: 8px; color: #5e4b27; }
+    .method { font-size: 14px; color: var(--muted); }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+    table { width: 100%; border-collapse: collapse; min-width: 840px; }
+    th { background: #edf3f9; color: #29435f; font-size: 14px; text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+    td { padding: 12px 14px; border-bottom: 1px solid #edf0f4; vertical-align: top; }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: #fafcff; }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .up { color: var(--red); font-weight: 700; }
+    .down { color: var(--green); font-weight: 700; }
+    .flat { color: var(--muted); font-weight: 700; }
+    .rank { width: 34px; height: 34px; border-radius: 10px; display: inline-grid; place-items: center; background: var(--navy); color: #fff; font-weight: 800; }
+    .ticker { font-weight: 800; color: var(--navy); }
+    .small { font-size: 14px; color: var(--muted); }
+    .chart-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; box-shadow: var(--shadow); }
+    .chart { width: 100%; height: 500px; }
+    .chart.short { height: 390px; }
+    .toolbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 8px 0 8px; }
+    button { border: 1px solid var(--line); background: #fff; color: #40506a; border-radius: 999px; padding: 8px 13px; cursor: pointer; font-weight: 650; }
+    button.active { color: #fff; border-color: var(--blue); background: var(--blue); }
+    .mapping-flow { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; align-items: stretch; gap: 10px; }
+    .flow-node { background: #f8fbff; border: 1px solid #cddbea; padding: 16px; border-radius: 14px; }
+    .arrow { display: grid; place-items: center; color: var(--blue); font-size: 24px; font-weight: 900; }
+    .sector-card { border-top: 5px solid var(--blue); }
+    .sector-card.storage { border-top-color: #8b5cf6; }
+    .sector-card.cpo { border-top-color: #d83445; }
+    .sector-card.optical { border-top-color: #d17b0f; }
+    .sector-card.pcb { border-top-color: #168f55; }
+    .scoreline { height: 8px; background: #e8edf4; border-radius: 999px; overflow: hidden; margin: 8px 0 4px; }
+    .scoreline > span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #4d86c3, #173b6c); }
+    .evidence { padding: 14px 0; border-top: 1px dashed #d8dee8; }
+    .evidence:first-child { border-top: 0; }
+    .source-list li { margin: 9px 0; }
+    footer { border-top: 1px solid var(--line); padding: 26px 0 40px; color: var(--muted); font-size: 14px; }
+    @media (max-width: 900px) {
+      body { font-size: 18px; }
+      .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .mapping-flow { grid-template-columns: 1fr; }
+      .arrow { transform: rotate(90deg); min-height: 28px; }
+      .chart { height: 560px; }
+      h2 { font-size: 26px; }
+      .wrap { width: min(100% - 22px, 1180px); }
+    }
+  </style>
+</head>
+<body data-page-node-id="V48PEFudOBXYmgOuEBKI0w">
+<header data-page-node-id="RDZq2HK2g6I03EOqFHmzyF">
+  <div class="wrap" data-page-node-id="V4SfLTyqtvbWYWmWPcZcRt">
+    <div class="eyebrow" data-page-node-id="xFQquSNcRxKus1mxL6ESbd">Cross-market Technology Mapping</div>
+    <h1 data-page-node-id="0b7y02mdFEiQUcgqX5ejjC">A股科技板块的美股映射：设备、存储、CPO、光模块与PCB</h1>
+    <p class="subtitle" data-page-node-id="stMUB9Yq82mZJKOQ7P7OH9">不是简单找“同名概念股”，而是按产品重合度、共同需求源、价格周期和客户资本开支，筛出最有观察价值的美股锚。</p>
+    <div class="status-line" data-page-node-id="ySJCv2QWiECGlP71o0MxuZ">
+      <span class="status-chip" data-page-node-id="I0oBGlbFurBxkPx4cYP1fk">报告日期：2026-08-31</span>
+      <span class="status-chip" data-page-node-id="7DBcI3jEdtoPReLp7mHamc">A股：8月31日收盘</span>
+      <span class="status-chip" data-page-node-id="HyiNFy5IpkAfIQhdwM0bbJ">美股：北京时间21:15仍在盘前，走势采用8月28日常规收盘</span>
+      <span class="status-chip" data-page-node-id="t0Jl3UJSEH8tMTcx1ltspS">涨红跌绿</span>
+    </div>
+  </div>
+</header>
+<nav data-page-node-id="APDHyJWfwv4wTjWf9Xiy9Q">
+  <div class="wrap" data-page-node-id="CbGzqfXPaxyjhGQyPIjBvU">
+    <a href="#summary" data-page-node-id="xMipjl2fEQNkeHSWeTMW6N">核心结论</a>
+    <a href="#method" data-page-node-id="G9zxLLtFO62tSJyFsefX7r">映射方法</a>
+    <a href="#map" data-page-node-id="23P1aXrKiu25ly5exyOcsZ">核心清单</a>
+    <a href="#trend" data-page-node-id="EBWsk2f7CEN5kRti1HeF36">走势</a>
+    <a href="#sectors" data-page-node-id="YDLOXHwY0IuVKbTFXYaAol">分板块证据</a>
+    <a href="#watch" data-page-node-id="tWs53CYBC2cG835jZF1MNo">观察框架</a>
+    <a href="#sources" data-page-node-id="tz3428be5DcDBFkqvPyAAp">来源</a>
+  </div>
+</nav>
+<main class="wrap" data-page-node-id="08H8TYLSQWu95wjsklHD9R">
+  <section id="summary" data-page-node-id="NFsCPFofwRcqUnKQiVOXXL">
+    <h2 data-page-node-id="cqasN5U7pNItXIzovOTour">一、结论先行</h2>
+    <div class="grid grid-4" data-page-node-id="RgZWpZP7CAF7FHXsTNKEi3">
+      <div class="card conclusion" data-page-node-id="vafWWwx5ybVS0kg2b3wZuV">
+        <div class="label" data-page-node-id="bOoe9qrJnMaP86NbiExQQi">美股映射最强</div>
+        <div class="metric" data-page-node-id="xAIJt2VQwBVNGJz2xcQiFc">光模块 / CPO</div>
+        <p data-page-node-id="3NhjO0m7IpD7dFgCbI0voM">同受北美云厂商AI资本开支、800G/1.6T升级与光互联渗透率驱动，隔夜情绪传导最直接。</p>
+      </div>
+      <div class="card" data-page-node-id="JZfdECYngywHx8SYmHyZzh">
+        <div class="label" data-page-node-id="0LGg0LkW7MGbbrQF8cBXvj">中期产业验证最硬</div>
+        <div class="metric" data-page-node-id="rqjKY6bLF07BWvZc1FgBuS">设备 / 存储</div>
+        <p data-page-node-id="llkBapHYiex1Io5aLFvgwJ">先进制程、DRAM/HBM与先进封装扩产，直接拉动设备需求；存储价格与供需周期可由美股原厂验证。</p>
+      </div>
+      <div class="card" data-page-node-id="q8O4D24jq4vsZZKiCMWXNu">
+        <div class="label" data-page-node-id="H3KHWw6FjESaroAHFDjB3U">当前相对走势最稳</div>
+        <div class="metric green" data-page-node-id="yM4psjPbH3foQl5HF1uAxl">半导体设备</div>
+        <p data-page-node-id="obrVZAfcyBXK5qJ2YOc58f">核心美股样本近60日平均约 -9.7%，弱于年内涨幅但明显好于光模块样本的 -30.7%。</p>
+      </div>
+      <div class="card" data-page-node-id="HVH5hQgagIdMx0AnGxpPi1">
+        <div class="label" data-page-node-id="AuzIWWRfA87LA8Xoutj4E8">最容易“错映射”</div>
+        <div class="metric" data-page-node-id="5svXx8eA1tUSPtB2C8XsV6">PCB</div>
+        <p data-page-node-id="IO6wRrF1GG5mH5EwsaZmM5">美股纯PCB标的稀缺；TTMI最直接，ROG偏高频材料，SANM属于EMS，不能与沪电、生益机械等同。</p>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:16px;" data-page-node-id="luHw0WIGDGKR7uxxHH1W4g">
+      <strong data-page-node-id="bdG6IAoXG83qxBfC5sO2jS">核心判断：</strong>用“组合确认”代替“单股对标”。例如观察A股光模块，应同时看 COHR/LITE（光器件与激光器）、AVGO/MRVL（交换与光DSP/CPO）以及云厂资本开支；只看英伟达或单只光通信股，容易把个股事件误判成全产业趋势。
+    </div>
+  </section>
+
+  <section id="method" data-page-node-id="6mKhgURcUYRes1iQE1QPvw">
+    <h2 data-page-node-id="spDrMGHOosTJc9BrnLFTay">二、映射框架：美股是“景气锚”，不是A股替身</h2>
+    <div class="mapping-flow" data-page-node-id="3O6Jj8SsHMQrdxjVVsiMA9">
+      <div class="flow-node" data-page-node-id="AODIa22KTg27uvSN5D4dC4"><h3 data-page-node-id="4UQTwH7eKC5lIm2pVo6Cwc">海外需求与技术路线</h3><p data-page-node-id="yPq5QrJmpDw4BnJXZITeWU">云厂AI Capex、HBM/DRAM扩产、交换芯片带宽、800G/1.6T升级。</p></div>
+      <div class="arrow" data-page-node-id="xAI9eG8x4MvsSMcDrmuNHq">→</div>
+      <div class="flow-node" data-page-node-id="i3tBrIDruAxTCauzw9zCjq"><h3 data-page-node-id="HW87GbfnBPBhjHQk7PrkDb">美股先行指标</h3><p data-page-node-id="X3sepawaCHjrmBzkJdLbfR">订单、指引、产品爬坡、毛利率与股价反应，验证产业景气是否超预期。</p></div>
+      <div class="arrow" data-page-node-id="L923k9lI65KlRgBbJDwv0S">→</div>
+      <div class="flow-node" data-page-node-id="Vxx6He3jOxOHjip4hRV6sJ"><h3 data-page-node-id="3vhwFevQULER5lj3EgrpWF">A股兑现路径</h3><p data-page-node-id="88aMQZXmSdDv9b9YAF3vsq">海外订单、ASP与产品结构升级，或国内晶圆扩产与国产替代。</p></div>
+    </div>
+    <div class="card" style="margin-top:16px;" data-page-node-id="kB75GT5H5uBbrTenJ2qSkg">
+      <h3 data-page-node-id="eswx9F04K7JjGbG5wHRy3c">映射评分口径（研究评分，非行情数据）</h3>
+      <p class="method" data-page-node-id="38FeDXGROeLNWwltnod1Oj">产品/环节直接重合 40% + 共同需求源 30% + 行业周期与价格联动 20% + 业务纯度 10%。评分只用于筛选观察优先级，不代表收益预测。</p>
+    </div>
+  </section>
+
+  <section id="map" data-page-node-id="LDqjq5C1CF3ip4BLmsU9PJ">
+    <h2 data-page-node-id="uGxEwwvKy84mACAax4bqPN">三、核心美股清单：按“最相关”而非按市值排序</h2>
+    <div class="table-wrap" data-page-node-id="9JFK2kJBk8sWozCGUm05UL">
+      <table data-page-node-id="vUdQNhsiF6wzYJBUpnbzrx">
+        <thead data-page-node-id="y5IjPOZzKw5e6rSynbIyTs">
+          <tr data-page-node-id="YpOR37CdYMRYKnsMOAEXFD"><th data-page-node-id="CtPBsdPtAEl8FNJdSrCYih">板块</th><th data-page-node-id="3r6Sy9WcoW0mSBo4v72pBJ">优先级</th><th data-page-node-id="Tr9AgNz2rHRk3WUhAVpNj2">美股</th><th data-page-node-id="LQEit4LLCfmYUpnXpYBoxO">映射评分</th><th data-page-node-id="7EWhbncS7C8Uk5OW01wLUx">对应A股观察</th><th data-page-node-id="pxj2WhH1kanDL3EMy1i8SO">为什么相关</th><th data-page-node-id="i1VqVvAGe9yL54EARazi7C">边界/误区</th></tr>
+        </thead>
+        <tbody data-page-node-id="hz8sDeru6a1msXVQ18fW45">
+          <tr data-page-node-id="aJn9mKXJEHDaaWIDbhBVSA"><td data-page-node-id="v2LOfZfqfkKyCtRdjYJp6Y">半导体设备</td><td data-page-node-id="OtULG78TaCQSrpl7UC6b4k"><span class="rank" data-page-node-id="j2fmW9WnnDWOD1mI3gSNeF">1</span></td><td data-page-node-id="gHTudn0bdnYDiMNRnsscg1"><span class="ticker" data-page-node-id="fHUfA2YFas3HqemSKU3Dy2">AMAT</span> 应用材料</td><td data-page-node-id="mX3wfXqMfEPynfRwg2OSB7">95/100</td><td data-page-node-id="zTk0h9h7fl2BlUNaTImp7t">北方华创、拓荆科技、华海清科</td><td data-page-node-id="KlCn5rJ96K2JupjmegNyRR">沉积、刻蚀、CMP、先进封装平台型设备，覆盖面最接近A股平台龙头。</td><td data-page-node-id="y6m23WpmI0h1zlzPnWUCSD">A股还有国产替代溢价，估值不可机械照搬。</td></tr>
+          <tr data-page-node-id="AQU2EG0mJTISW06VxQJw9V"><td data-page-node-id="NLsdg5PM0suDpVJppRhIFG">半导体设备</td><td data-page-node-id="ysdiQ08oT7LghBoc3c3IPg"><span class="rank" data-page-node-id="46zFE2SgpCCYqkPLWmr3jt">2</span></td><td data-page-node-id="9V98ZGv1XO6wiC2hLWahZK"><span class="ticker" data-page-node-id="lvAsBO1wMuEGM7E4xMGmbz">LRCX</span> 泛林集团</td><td data-page-node-id="dOWO5tUTZQuGAIqSlZD77R">92/100</td><td data-page-node-id="pCVFAqpkqk8U0UKnafqjfE">中微公司、北方华创</td><td data-page-node-id="LjBJvnnW5DHKhlCdNusScC">刻蚀/沉积与存储扩产高度相关，是DRAM/NAND资本开支的重要温度计。</td><td data-page-node-id="5HjYMwrgCDwQjTYeEbUKnl">产品结构与国内厂商并非一一对应。</td></tr>
+          <tr data-page-node-id="qrOBRj26QZLazDoiQ5vB7y"><td data-page-node-id="49A7DpBj0CW832VpcdiIsD">半导体设备</td><td data-page-node-id="uj86CXgyKHi4SvSMyUnznn"><span class="rank" data-page-node-id="J35JYclZk4ts2P9xF8cf1i">3</span></td><td data-page-node-id="WzIeZJGRkZH7qj3BBRQRmy"><span class="ticker" data-page-node-id="APqagZD6XRIJCL6HWGORUI">KLAC</span> 科磊</td><td data-page-node-id="Jj23WYBMfGlqxz44Iuyft8">88/100</td><td data-page-node-id="zqiQRA22LnnSgrovHl5Q6R">中科飞测、精测电子</td><td data-page-node-id="CkhrkUBtYRlaZXdpYinGcl">量测与过程控制直接反映先进制程良率投入。</td><td data-page-node-id="FtbthHU5zeKzgwN4qYjryT">A股量检测国产化阶段不同。</td></tr>
+          <tr data-page-node-id="QB6EaPVyPRjnEMsD4DmOxD"><td data-page-node-id="d09Bpp1qpeigj7ZPBHrfGp">半导体设备</td><td data-page-node-id="bLVq9kzbstOwCUGlTkjrEq"><span class="rank" data-page-node-id="NnPt2QkbTiyOKXzMneGAeA">4</span></td><td data-page-node-id="aT7HT100hxhTyLjpM0IPBJ"><span class="ticker" data-page-node-id="lqK8Ro57RkgsPG6DbtRORk">ASML</span> 阿斯麦ADR</td><td data-page-node-id="tBZX2H3XHI0G4DQYZG9xHp">82/100</td><td data-page-node-id="Qj3j9IZknBiPsB95Q3Qg2v">光刻设备/零部件链</td><td data-page-node-id="k1XfmqxODLc7KzAY55kQ6f">先进制程扩产的最上游约束指标。</td><td data-page-node-id="gAATTruuE8a1VPGbZanSPU">荷兰公司、美国上市ADR；A股没有同等商业化能力的直接对标。</td></tr>
+          <tr data-page-node-id="UnJDV1AnD2YkOlRhHgjAyV"><td data-page-node-id="aFoBqMCd5K0cOM93BXy4Ka">存储芯片</td><td data-page-node-id="JA88fKLcmXoW48uYOb8k60"><span class="rank" data-page-node-id="NWCBaELmqfIT8GrGHyorNC">1</span></td><td data-page-node-id="i0LF8tt2oX3vVD35kYLWBv"><span class="ticker" data-page-node-id="ZQUcKrdwceY2Dpi28ZSdRM">MU</span> 美光科技</td><td data-page-node-id="CrAAlsCAEWLinQLAaA3WoH">96/100</td><td data-page-node-id="Vp4bSXB8RNhpQO9bOgmn7T">兆易创新、江波龙、佰维存储、HBM配套</td><td data-page-node-id="tYyrhIQbyHlKkDbsuuCLUz">DRAM、NAND、HBM价格与需求的直接原厂锚。</td><td data-page-node-id="fAuZ5GCXqDKIjOQtOy3NRd">A股多数并非同等规模的存储晶圆原厂。</td></tr>
+          <tr data-page-node-id="oKD6vFuTzROZ64T2XrV7x9"><td data-page-node-id="aO4voLKauf0ewy0rcz7mYI">存储芯片</td><td data-page-node-id="NguyfBYjIdUMoBRBZ41Tah"><span class="rank" data-page-node-id="h5i0WnVx6K1QhRLhN01UIC">2</span></td><td data-page-node-id="riEGSZDo8TwGGr4JL98LGz"><span class="ticker" data-page-node-id="0sq4SqMqxT66Fa5Ri6abWq">SNDK</span> 闪迪</td><td data-page-node-id="ycxbnKSz3Tz4Df5VDqZift">88/100</td><td data-page-node-id="6YSkCt78uchYQjaX71uxHA">江波龙、佰维存储、德明利</td><td data-page-node-id="z7HLrQbvsIyTt3xftXLOBa">NAND与SSD更贴近模组、企业级存储链。</td><td data-page-node-id="A4WslqIBBcHopmjlc2YKZS">分拆上市与基期会放大YTD，需看复权口径。</td></tr>
+          <tr data-page-node-id="mYFC1bCVW5s3IrZhovPisE"><td data-page-node-id="2ttBOlqJqB7y7M8hAd4PVF">CPO</td><td data-page-node-id="V0EBS01hPgyoVvGXGPrSdR"><span class="rank" data-page-node-id="uiO0l97jyGNO60pcHfNQX6">1</span></td><td data-page-node-id="yOxk5nuYMqqj9oykIXVddH"><span class="ticker" data-page-node-id="fzsn6gdyolSqusZ5aMrJBt">MRVL</span> 迈威尔</td><td data-page-node-id="IGHPBf6JQ9XGnoMzUFxImT">93/100</td><td data-page-node-id="YfRTMAim6VyVCaM49BjBZV">CPO、光DSP、高速互联、交换芯片链</td><td data-page-node-id="17WwMQi3PZvHBbOpIkeqDh">800G/1.6T互联、NPO/CPO与定制XPU同时受益。</td><td data-page-node-id="3XXJ8pyLTojmNgQz34SKic">收入还包含非CPO业务，股价也受ASIC预期影响。</td></tr>
+          <tr data-page-node-id="tcqA3Ti85NbJelhzzqlRy9"><td data-page-node-id="e7H1gGHfyj8TbWGbtgvYs8">CPO</td><td data-page-node-id="DImDazeeNE5Tj1QN1cs1gr"><span class="rank" data-page-node-id="Ay1SW7XXpZUde8nXd5ihD9">2</span></td><td data-page-node-id="c6Hj3jXrWUPjK8cnJ3Wr8o"><span class="ticker" data-page-node-id="jDNnvxvUVrUhUlzQxLZpGt">AVGO</span> 博通</td><td data-page-node-id="AYAqWgpDYVhjxRQL4MfzgQ">91/100</td><td data-page-node-id="EnOD8BTHciZ2ZLGwcwCeyk">CPO、交换机、光互联与AI服务器链</td><td data-page-node-id="zB9nQ8ksGhp82tJwfVPkky">AI交换/网络芯片与定制加速器决定带宽需求。</td><td data-page-node-id="5Ubcss9TAXiOsIhjcQqZUV">软件业务体量大，股价不是纯CPO信号。</td></tr>
+          <tr data-page-node-id="4wBIGdGBRjZ0FU2yMNrukN"><td data-page-node-id="T0xo7k0C2VXt35Q8HjdQ8D">CPO</td><td data-page-node-id="wf8zT3S6y7rIchzICnFOal"><span class="rank" data-page-node-id="363UG0JJMjI1qdPf3g9tU6">3</span></td><td data-page-node-id="0rRHaQirmeIDSEtgDjPIdU"><span class="ticker" data-page-node-id="ZycEBDOYEzFtZyJtxz9f11">LITE</span> Lumentum</td><td data-page-node-id="ZTka4kAJ3qAtyFVnU7KXfp">89/100</td><td data-page-node-id="xV8dYYP9kAtNaFKhvMdo9k">天孚通信、源杰科技、光引擎链</td><td data-page-node-id="LN6R11wlSKcAbVR8Ejnm1V">高功率激光器、EML与CPO外置光源直接相关。</td><td data-page-node-id="ZK4hOPbF5mnX2NLamblT43">当前仍受产品组合和产能爬坡影响。</td></tr>
+          <tr data-page-node-id="3f3rwboBKeN9pSxxpMiiZV"><td data-page-node-id="jCJ2932emYWYH2e1wYlGDM">光模块</td><td data-page-node-id="rVl3F9ys3iYcHmMLTZFzTR"><span class="rank" data-page-node-id="Djo6wzIhfsD08HEMZZjsk3">1</span></td><td data-page-node-id="cjSZS1OsYGAEhexukXqNlV"><span class="ticker" data-page-node-id="hqj0UOvm5TnviQdmI272DB">COHR</span> Coherent</td><td data-page-node-id="2hZxHUT34c9o5X44IICfbP">95/100</td><td data-page-node-id="mdBsw8BJFLhJhyjABGKYUa">中际旭创、新易盛、天孚通信</td><td data-page-node-id="MBv35cHO8KNQCYP2ZFvP3q">光器件、激光器、收发器与硅光平台覆盖完整。</td><td data-page-node-id="AdEzRVU8t7Z4ZZ0m0k4Z6z">还包含工业与材料业务，需看数据中心分部。</td></tr>
+          <tr data-page-node-id="XH1S2vtSj5BJr7tFE2pVUF"><td data-page-node-id="CLjoeCAYJ1k3cCup2CeLAg">光模块</td><td data-page-node-id="SPrwDT70bgEPpxRZ77N5EQ"><span class="rank" data-page-node-id="csSua3mzlVSNKq8JrxGhf0">2</span></td><td data-page-node-id="W6f524ACoCKzOYxVhBBHlb"><span class="ticker" data-page-node-id="zLGaN3krJ02sgB8s8JxSR4">LITE</span> Lumentum</td><td data-page-node-id="17YflgYvzJllyiJ4AhDSCf">94/100</td><td data-page-node-id="HKzfuEB7C2xWAHZpyTTphL">光芯片、光引擎、光模块</td><td data-page-node-id="ZX9KU8L0dJP7wYWEQw3xir">云收发器、EML/CW激光器和CPO均直接受AI互联驱动。</td><td data-page-node-id="dX3y9cpUMxzUjStjAuIIOf">与CPO板块重叠，不能重复计算暴露。</td></tr>
+          <tr data-page-node-id="uZnLufECFBvE5F7CeBFFIL"><td data-page-node-id="bhYs1YymivKTSaaLKgDzaT">光模块</td><td data-page-node-id="a1QrFJ8RCsyZTMwBEPG0hw"><span class="rank" data-page-node-id="lvJqNpYHRTFvvuC4Bmapnc">3</span></td><td data-page-node-id="3EFgjQupF45NSrQIFSOTIM"><span class="ticker" data-page-node-id="aJb6tZ6SkEjGDzQMLBFmXS">AAOI</span> 应用光电</td><td data-page-node-id="wlWUopRkewtRCzCdWvxSYP">90/100</td><td data-page-node-id="0KFv5UWDjWP0QC97A0RnSS">光迅科技、源杰科技、高速光模块</td><td data-page-node-id="mPWNeRWFrLrHAZkoI6He4b">IDM光组件与高速模块，业务弹性高。</td><td data-page-node-id="9fHVh59WSs1ditPgYD6c9z">亏损期、客户集中，波动显著高于龙头。</td></tr>
+          <tr data-page-node-id="SkLwDvPqrmCIEZKu963ePu"><td data-page-node-id="PSggFiQ55oxtAJUc0ZxNjc">光模块</td><td data-page-node-id="ZPd3YUQqhXcJOgDkjNMISm"><span class="rank" data-page-node-id="gKYA55GDOBU0TaZNmmKE2X">4</span></td><td data-page-node-id="ZQr2WkV9CITUsrZmqrJSrf"><span class="ticker" data-page-node-id="A5b04e0J9f2eJmHYDLHuI3">FN</span> Fabrinet</td><td data-page-node-id="Fc1w8uYIoTymGI8CQO41Ig">74/100</td><td data-page-node-id="OwLFxBlmUDAghWVuRdqPU1">光模块制造、精密代工链</td><td data-page-node-id="r5Gjlv4OOyO6gFyEJ3C7fR">高端光学制造与代工可验证行业订单强度。</td><td data-page-node-id="0gjAYo2JjXByU3b2cx3pUb">制造服务商，不等同于拥有核心光芯片/IP。</td></tr>
+          <tr data-page-node-id="x1bWeHIfqjwev5g6jESdGs"><td data-page-node-id="lCOjvNC3jltP0dNqD8eQbB">PCB</td><td data-page-node-id="DdAEAn6UNaUmXW9y9zhmkA"><span class="rank" data-page-node-id="NUaEsMc5uqHwqzZ2cfzJXe">1</span></td><td data-page-node-id="N1KNkULjSpkbsbDGrjPkkU"><span class="ticker" data-page-node-id="Nk1Nai3i96awvqyfSNFqGP">TTMI</span> TTM Technologies</td><td data-page-node-id="SD7BImmzCvcZjim1Iljvpv">96/100</td><td data-page-node-id="AhCMpnGC39m9YfBEFYZcaV">沪电股份、胜宏科技、深南电路</td><td data-page-node-id="R5tm7t84t0v3A7Jr7vusR4">美股中最直接的高端PCB/基板映射。</td><td data-page-node-id="uG4kOELdEKFukx7e0kdyGB">航空航天与国防收入也较高，非纯AI PCB。</td></tr>
+          <tr data-page-node-id="OYidpz4OALuhcG2V2yRUWb"><td data-page-node-id="47UIED0Ks5XZK3IzVd1KUA">PCB</td><td data-page-node-id="lpQ2HmYvIzaohwblGqkIOe"><span class="rank" data-page-node-id="cFxn9h1j8ME9aqwrm6EpA1">2</span></td><td data-page-node-id="8geD8g8hmIvCDL9JxzTp8N"><span class="ticker" data-page-node-id="OQVc3xMQLsV5hwuhcoBZ9e">ROG</span> Rogers</td><td data-page-node-id="loR5X0o1U1267pSRsnnMiE">72/100</td><td data-page-node-id="zUFiUDUhssAuXKuXM6lLzV">生益科技、高频高速覆铜板/材料链</td><td data-page-node-id="qpmqYUKSW3cibGPEkor3oV">高频电路材料与PCB上游材料更相关。</td><td data-page-node-id="Hm6aB3tUBGDerX7djYcuAo">是材料映射，不是PCB制造商。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small" data-page-node-id="ihj0MWeaSwykHi7vHll2GT">次级参考：WDC当前更偏HDD与数据存储硬件，不能再简单等同于NAND；SANM偏EMS/系统制造，只适合作为服务器制造景气辅助指标，不列入PCB核心锚。</p>
+  </section>
+
+  <section id="trend" data-page-node-id="XcJo8q1ojcXpcJ811sg60x">
+    <h2 data-page-node-id="cUNeKWaPsVqcdhrk9p0y58">四、走势：年内仍强，近60日普遍进入高波动消化</h2>
+    <div class="chart-card" data-page-node-id="f3dFiOV2CcqovUBIagcFFx">
+      <div class="toolbar" id="sectorButtons" data-page-node-id="GUZhPmfn8vBHhsMGUAZfys">
+        <button class="active" data-sector="全部" data-page-node-id="IwmSWEtmxy67E5Q3r9m5y7">全部</button>
+        <button data-sector="半导体设备" data-page-node-id="WZxkdd5BjeZyLPDU2Po0GM">半导体设备</button>
+        <button data-sector="存储芯片" data-page-node-id="MuAUoyXyYtxrW6d9jujt3G">存储芯片</button>
+        <button data-sector="CPO" data-page-node-id="bBdcKSP7mPzRHCxkko1xSa">CPO</button>
+        <button data-sector="光模块" data-page-node-id="olHqRZRPfjuNhvGCT6dFWX">光模块</button>
+        <button data-sector="PCB" data-page-node-id="I7UJxyF84RLEM3T1ZbWhIu">PCB</button>
+      </div>
+      <div id="usTrendChart" class="chart" data-page-node-id="rhcrIWWtcAsp6PHQHKkmSq"></div>
+      <p class="small" data-page-node-id="CdvAe0gpoPX0yMyGDTztPz">行情源：westock-data，字段时点2026-08-31；由于当时美股常规交易尚未开盘，收益统计对应截至2026-08-28的最近常规收盘。YTD及60日涨跌幅由数据源直接返回。SNDK存在分拆与基期影响，YTD仅作方向观察。</p>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:16px;" data-page-node-id="pKchm4cq2hC3nl2HDUOSlw">
+      <div class="chart-card" data-page-node-id="L5BwomjHVOsknsfLrbORD6">
+        <h3 data-page-node-id="rSIAQDLxBF2CYs0EXJ7itF">A股板块/样本篮子：20日与YTD</h3>
+        <div id="aTrendChart" class="chart short" data-page-node-id="I1zWaaVCvUH8BBG9ln5K0p"></div>
+        <p class="small" data-page-node-id="JxxwDRad2NoiS9wNv1bFAp">半导体设备、存储、CPO、PCB为数据源板块口径；“光模块”使用中际旭创、新易盛、天孚通信三只等权样本，20日与YTD均为简单平均。</p>
+      </div>
+      <div class="chart-card" data-page-node-id="h3EjHvygzJaxkfJEUI8Kt7">
+        <h3 data-page-node-id="iIO8oC13s9Y9o8G3nIzuu7">映射强度 × 美股近60日表现</h3>
+        <div id="scoreChart" class="chart short" data-page-node-id="ogbvrzhue8fIbqZGEPSHt1"></div>
+        <p class="small" data-page-node-id="ZXwSFmHFCmU8Xjgcu8FqnF">横轴为本文研究评分，纵轴为各板块核心美股样本近60日平均涨跌幅。映射越强不等于短线越强：光模块映射最直接，但近期回撤也最深。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sectors" data-page-node-id="FORGDczkl9wTeGXUGjTUe1">
+    <h2 data-page-node-id="H4bhyDIbEnpfGPDV5AxbT5">五、分板块证据链</h2>
+    <div class="grid grid-2" data-page-node-id="Ee2liGFpifVfvuGD9H8yOp">
+      <div class="card sector-card" data-page-node-id="UXrmzg7pFJsp5ZIhscoE4Z">
+        <h3 data-page-node-id="2BSrkOnQ5TN06JZ0F6KP8B">1）半导体设备：看“扩产强度”，A股再叠加国产替代</h3>
+        <p data-page-node-id="0ZE3PUuwBeoIPzRj6HnGl4"><span class="tag core" data-page-node-id="WxOUO54HCShBkAqv4fk0DN">核心锚 AMAT / LRCX</span><span class="tag direct" data-page-node-id="7uEpNGtL6BQ45A5gs6fZBP">验证锚 KLAC / ASML</span></p>
+        <div class="evidence" data-page-node-id="u6x07xi7rbF5g3cxXeWHDb"><strong data-page-node-id="aZKWxfADmmMuIDB0c3fTWp">一手证据：</strong>应用材料FY2026 Q3营收91.15亿美元，同比增长25%；半导体系统收入70.4亿美元，同比增长27%；公司预计2026自然年先进封装收入增长超过70%。<a href="http://ir.appliedmaterials.com/news-releases/news-release-details/applied-materials-announces-third-quarter-2026-results" target="_blank" data-page-node-id="RNaeMRCd2AZCy1dV2NoeNy">公司公告（2026-08-13）</a></div>
+        <div class="evidence" data-page-node-id="EhrpmA7HC75rtovo2KLBB8"><strong data-page-node-id="8XO5ufY8QtGMY7sHJO4LkD">映射结论：</strong>AMAT/LRCX同步走强，通常意味着晶圆厂资本开支与存储扩产预期增强；KLAC用于确认先进制程良率投入。A股北方华创、中微公司等同时受国内扩产和国产替代驱动，因此并不必然与美股同涨同跌。</div>
+        <div class="evidence" data-page-node-id="FTIL6bQ9rXKNSOmdy7a6Bq"><strong data-page-node-id="D4gvdxtcrvdiBzpd8XFXni">走势：</strong>核心美股样本近60日平均约 <span class="down" data-page-node-id="yqJxUmsgerZ6u2EtUMOPwN">-9.7%</span>，为五组中相对抗跌；A股半导体设备板块YTD <span class="up" data-page-node-id="au8s1IdMINAJ9TDelP7Djs">+94.5%</span>、近20日 <span class="up" data-page-node-id="gJwhG8or1Wjg3CtzhTREhC">+17.5%</span>，但PE TTM约101.7倍、历史分位约90%，已经包含较高预期。</div>
+      </div>
+
+      <div class="card sector-card storage" data-page-node-id="CCjJbsvZPS7uWIKBWCArC0">
+        <h3 data-page-node-id="WCXG3vH3jLJJ38afCqSx14">2）存储芯片：MU看DRAM/HBM，SNDK看NAND/SSD</h3>
+        <p data-page-node-id="5BQfJDPpvxWI0bpgyCIBPa"><span class="tag core" data-page-node-id="3wrUQ2aKk4kxAKoSXm879n">核心锚 MU</span><span class="tag direct" data-page-node-id="yT0brUB3wfWFLgDQswN1VP">NAND锚 SNDK</span></p>
+        <div class="evidence" data-page-node-id="jFe9bM945YUq5GdjBDkHjD"><strong data-page-node-id="CgDIysGV2x7WcA1vGSKPLi">一手证据：</strong>美光FY2026 Q3营收414.56亿美元，并给出Q4营收500亿美元±10亿美元指引；HBM4已进入量产出货。<a href="https://www.sec.gov/Archives/edgar/data/723125/000072312526000013/a2026q3ex991-pressrelease.htm" target="_blank" data-page-node-id="TIP1U69dIfhO0g87dVrIoV">SEC 8-K附件（2026-06-24）</a></div>
+        <div class="evidence" data-page-node-id="nXErMPdKBqSIsy27laqYzE"><strong data-page-node-id="C7asPf8nLMDEwxqCN1UX2a">映射结论：</strong>MU是A股存储周期最重要的美股价格/需求锚；SNDK更贴近NAND、SSD和存储模组。兆易创新并非HBM原厂，江波龙/佰维存储更多是模组与品牌链，因此应按细分产品而不是“存储概念”笼统对标。</div>
+        <div class="evidence" data-page-node-id="N6jytiVGblvIFpYt8fhVeY"><strong data-page-node-id="6tpSGX8ARw8wqaikHDzenI">走势：</strong>MU与SNDK年内涨幅极高，但近60日平均约 <span class="down" data-page-node-id="kC3uGCUDZ2KgbjHwyRrJfp">-16.2%</span>，显示强基本面与交易拥挤并存。SNDK的YTD受分拆上市与基期影响，不适合直接与成熟上市公司横比。</div>
+      </div>
+
+      <div class="card sector-card cpo" data-page-node-id="KA1HmkWV3tvA5ayTfCt83N">
+        <h3 data-page-node-id="QQriHtoIqdu5tKkUjfCQhr">3）CPO：芯片侧看AVGO/MRVL，光源侧看LITE/COHR</h3>
+        <p data-page-node-id="LeOEiA26xwCHFiwo4SuyLm"><span class="tag core" data-page-node-id="WBgXEIORjaKr4uYkLo1CB3">芯片锚 AVGO / MRVL</span><span class="tag direct" data-page-node-id="t0AGqlFKWrOuMeWoNLDYix">光子锚 LITE / COHR</span></p>
+        <div class="evidence" data-page-node-id="KNSndVnhFQSlfgB5pZEetk"><strong data-page-node-id="o6rV9Bu9bSGDmCPbm1rhIq">一手证据：</strong>博通FY2026 Q2 AI半导体收入108亿美元，同比增长143%，公司预计Q3达到160亿美元、同比增长超过200%。<a href="https://www.broadcom.com/company/news/financial-releases/64371" target="_blank" data-page-node-id="4NniT8TGOssiEWQMHtwXaK">公司公告（2026-06-03）</a></div>
+        <div class="evidence" data-page-node-id="LqOzPPDXcsdPQwEXw81Cdr"><strong data-page-node-id="FrDtn9h3HnCsv0vHndy2O4">一手证据：</strong>Marvell FY2027 Q1营收24.18亿美元，同比增长28%；管理层将增长归因于800G/1.6T光互联、NPO/CPO、交换芯片与定制XPU。<a href="https://investor.marvell.com/sec-filings/all-sec-filings/content/0001835632-26-000014/q127_8kx522026ex-991.htm" target="_blank" data-page-node-id="OQf8Zl20f4KUskwVFntHCX">SEC披露（2026-05-27）</a></div>
+        <div class="evidence" data-page-node-id="nnRKYzk6dApMgPOtr5AXrc"><strong data-page-node-id="3tKqQYQAYqUfgQoKxUarQu">映射结论：</strong>CPO不是单一“光模块升级”，而是交换ASIC/DSP、光引擎、CW激光器、封装与耦合共同变化。A股天孚通信、源杰科技、光迅科技更接近器件/光源环节，中际旭创、新易盛仍以高速可插拔模块兑现为主。</div>
+      </div>
+
+      <div class="card sector-card optical" data-page-node-id="LZmU2npC00AxYAKYluCsHl">
+        <h3 data-page-node-id="0mnK6a2inSA4BgljuqPcvY">4）光模块：最强隔夜映射，但也是近期回撤最深</h3>
+        <p data-page-node-id="NBXCxMI84w551TxB9vhv8m"><span class="tag core" data-page-node-id="tsZLjE1yFidbr3ADl85dF1">核心锚 COHR / LITE</span><span class="tag watch" data-page-node-id="1OMpvT3ga66ALoV2puPrvo">弹性锚 AAOI</span><span class="tag direct" data-page-node-id="0BUTVvqgbhNFt284Zkmz2H">制造锚 FN</span></p>
+        <div class="evidence" data-page-node-id="e75axAJahnJlwqZlODxyG2"><strong data-page-node-id="MhbalHtHTl9OqZ5PFaiPss">一手证据：</strong>Coherent FY2026 Q4营收20.5亿美元，同比增长34%，非GAAP毛利率40.2%；公司明确将AI数据中心从铜向光迁移视为多年机会。<a href="https://www.coherent.com/news/press-releases/fourth-quarter-and-fiscal-year-2026-results" target="_blank" data-page-node-id="EL9APtvUXOWZySDXyoIzVm">公司公告（2026-08-12）</a></div>
+        <div class="evidence" data-page-node-id="FOImSa5K25k8ULYmMrR2Zd"><strong data-page-node-id="KL8dg6jBuki7gQ0F3GneEJ">一手证据：</strong>Lumentum给出FY2027 Q1营收12.25亿—12.75亿美元、非GAAP经营利润率39.5%—40.5%的指引。<a href="https://investor.lumentum.com/financial-news-releases/news-details/2026/Lumentum-Announces-Fourth-Quarter-and-Full-Fiscal-Year-2026-Results/default.aspx" target="_blank" data-page-node-id="sj93iUkNzCRN83eHPB7qj6">公司公告（2026-08-11）</a></div>
+        <div class="evidence" data-page-node-id="GMLPiRp11ZGfyHuNC0m6xY"><strong data-page-node-id="TLHxSETq7Cq4XxGt9FmMjn">走势：</strong>COHR/LITE/AAOI/FN近60日平均约 <span class="down" data-page-node-id="Gtfu871b8mF64ThsAgcGsO">-30.7%</span>，尽管多数YTD仍大涨。这说明市场正在从“有需求就涨”切换到“订单、产能、毛利率是否继续超预期”的验证阶段。</div>
+      </div>
+
+      <div class="card sector-card pcb" style="grid-column: 1 / -1;" data-page-node-id="vR6N9guJkhMGcHi7vDTGyK">
+        <h3 data-page-node-id="NERXRS1Tw6xLqK0az12uqw">5）PCB：TTMI是最直接锚，但A股自身全球竞争力更强</h3>
+        <p data-page-node-id="9NHlCaKNrh3IslwU2Z7y2O"><span class="tag core" data-page-node-id="25B8IEmzsoUYYjfNt0wNNa">核心锚 TTMI</span><span class="tag direct" data-page-node-id="eQb2tPEayfFl4HHbHcFTRk">材料锚 ROG</span><span class="tag risk" data-page-node-id="G5MniZvltJvDgYaZJKuLfw">SANM仅辅助</span></p>
+        <div class="grid grid-2" data-page-node-id="vEP4T2SpY4AMXg3mYKQqJ0">
+          <div class="evidence" data-page-node-id="03ZYN0OlyTcChWZP2nHVGv"><strong data-page-node-id="FzMXriyursNV8E8OIcCr18">一手证据：</strong>TTM Technologies 2026 Q2营收10亿美元，同比增长37%；数据中心与网络占收入40%，同比增长91%，订单出货比1.49。<a href="https://investors.ttm.com/news-events/press-releases/detail/411/ttm-technologies-inc-reports-second-quarter-2026-results" target="_blank" data-page-node-id="iQqggO2GEAUYi4KcnpfxGH">公司公告（2026-08-05）</a></div>
+          <div class="evidence" data-page-node-id="rgAKXzar4v33TMDQqds0wi"><strong data-page-node-id="goEiY6GWQRWIWDDkIvyxeR">映射结论：</strong>TTMI可验证高端PCB/基板需求；ROG偏高频材料。A股沪电股份、胜宏科技、深南电路以及上游生益科技在AI服务器PCB与高频材料上有更强的本土产业链代表性，因此美股映射更多是需求验证，而不是估值模板。</div>
+        </div>
+        <div class="evidence" data-page-node-id="5zSxTzK9cvl1oRdOUDDMQu"><strong data-page-node-id="6VNtmtiq7r2T7bXQ4JxGmx">走势：</strong>TTMI与ROG近60日平均约 <span class="down" data-page-node-id="5EdNpaQZ1hqPaTSdO8r1sf">-26.3%</span>；A股PCB板块YTD <span class="up" data-page-node-id="nE4A9XNctTPcM4L78rdllu">+45.2%</span>、近20日 <span class="up" data-page-node-id="5wJP8SVSf4qIUyvKyRc2VN">+23.7%</span>。美股回撤而A股短期走强，提示国内材料涨价、订单结构或资金风格可能比隔夜映射更重要。</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="watch" data-page-node-id="zj0k4PXtS3NN0TFrZoz4sW">
+    <h2 data-page-node-id="zsQ9dQPeEtU60pc0lWNuhQ">六、实用观察框架：看什么才算“有效映射”</h2>
+    <div class="table-wrap" data-page-node-id="ECGR8ECCcw3szQSNBjhOni">
+      <table data-page-node-id="vOGCd6Bb2HiKpz7938HKx4">
+        <thead data-page-node-id="fft3Z0jaHvigmHe56maOa5"><tr data-page-node-id="XVBkwNLrQzF2f5Nb1Z6u1g"><th data-page-node-id="SzEyqJXHS5rNcZSnoSgDl0">板块</th><th data-page-node-id="jJ4NIfECU0b80xktYDd4oA">首要观察</th><th data-page-node-id="Wf3qUgISwANkuXipe9yMGb">确认条件</th><th data-page-node-id="HvCZ3Vvb3EXG4z84Cb2R54">容易失效的情形</th></tr></thead>
+        <tbody data-page-node-id="3Do1v7PTAEceGCWkJwku1N">
+          <tr data-page-node-id="craG5pBXoYXcJTwIKf2w5W"><td data-page-node-id="siYPgqsursmBFSrRgmAv9v">半导体设备</td><td data-page-node-id="nbFkdOAsZVsQKFno6mdil2">AMAT + LRCX + KLAC</td><td data-page-node-id="qkqGknSXi80fy3cfxYNwHs">至少两家公司指引/订单同时改善，且DRAM/先进封装投入上修</td><td data-page-node-id="z0B3lD1jjBs4Hu4zdkRJE0">单只股票因回购、诉讼或出口限制波动</td></tr>
+          <tr data-page-node-id="vDqbjbkVyAA9TpPo9mfq8z"><td data-page-node-id="RJOqWnY6hCjh7jKnzynGCV">存储芯片</td><td data-page-node-id="squIPmElswmeHEB0uRinEa">MU + SNDK</td><td data-page-node-id="qBGdHABeKd5MIm902MWiVE">价格、毛利率与资本开支方向一致；HBM和传统DRAM/NAND共同改善</td><td data-page-node-id="ZMDhoDfM1RGfyBWbv7pZ26">只看股价、不看供给扩张和库存周期</td></tr>
+          <tr data-page-node-id="MW1laEBF672vtHGyDDI8W6"><td data-page-node-id="JoyEkkehIboHfPAz8pnKQu">CPO</td><td data-page-node-id="7nSiZH1MkhicuqBHhJBdP3">AVGO + MRVL + LITE/COHR</td><td data-page-node-id="Nbtb9J3EiRhTFmbHkrb2hG">交换/光DSP、CW激光器、CPO/NPO产品节奏同时推进</td><td data-page-node-id="el0Ey2nA9r8Q8pucMDkfCE">AVGO/MRVL仅因ASIC业务上涨，光子链未确认</td></tr>
+          <tr data-page-node-id="OxQEHT5heCZdmXbUchzGJT"><td data-page-node-id="nX284pe15aXG2xcFwqbmoz">光模块</td><td data-page-node-id="8j7k0WNtQBXmBIlOUd0SPO">COHR + LITE + AAOI</td><td data-page-node-id="7jg4ygYHTLAATmi0VSRtsO">800G继续增长、1.6T爬坡、订单能见度与毛利率同步提升</td><td data-page-node-id="PlhlOcK5p3ZACizAzKzSl5">单一客户拉货、产能瓶颈或产品降价抵消收入增长</td></tr>
+          <tr data-page-node-id="HmhGwCUY9LWV8Fms6RgpgG"><td data-page-node-id="wjNjVIfMlJmUT88bxks3G9">PCB</td><td data-page-node-id="e7mPiC76lgZ7nY0lWZMwc7">TTMI + ROG</td><td data-page-node-id="7L6F9oV08XTDKVRjiBiAl6">数据中心收入占比、book-to-bill、高层数/高频材料需求改善</td><td data-page-node-id="FadRRf0eK8sXULLoSE6skq">TTMI被军工业务主导，ROG被非PCB材料业务主导</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card conclusion" style="margin-top:16px;" data-page-node-id="0T5iByagnq1XJJdJj5ZTup">
+      <h3 data-page-node-id="5H0idVw4G6cpypCtRbFsGq">当前优先研究顺序</h3>
+      <p data-page-node-id="gsKCgAy6biP36ySmHvnBQQ"><strong data-page-node-id="DSiUZJke5QZK3J6JmSpHYw">中期景气验证：</strong>半导体设备 ≈ 存储 ＞ CPO ＞ 光模块 ＞ PCB美股映射。</p>
+      <p data-page-node-id="jxOTXfhPC6M00Q9VWSHrch"><strong data-page-node-id="MBVdHUAe2KO9496IF306EC">隔夜情绪传导：</strong>光模块 / CPO ＞ 存储 ＞ 半导体设备 ＞ PCB。</p>
+      <p data-page-node-id="06Qlu75BQhttjgjjRdfT76"><strong data-page-node-id="z2cLBRCmKtURXk5SfDSAaq">当前交易位置：</strong>多数美股样本YTD仍显著上涨，但近60日普遍回撤，尤其光模块与PCB；这更像高预期后的估值消化，而不是仅凭一组报价就能确认产业反转。后续要用财报指引、订单与产能爬坡继续验证。</p>
+    </div>
+  </section>
+
+  <section id="sources" data-page-node-id="GLG14KQoLK2j3WOiuQDWcg">
+    <h2 data-page-node-id="NwD3cdhp3UIfE5JhRa8jI4">七、数据来源与口径</h2>
+    <div class="card" data-page-node-id="2Kam9f4H1fSYFBGl4TGanX">
+      <ol class="source-list" data-page-node-id="bVgTJGBvDm4A4x6LhcmhpS">
+        <li data-page-node-id="gMAFLRhfpZe1LkMqzJt9nm"><strong data-page-node-id="f8ferRvhqwy5azRqasgVDB">行情与估值：</strong>westock-data动态行情，查询时点2026-08-31。A股使用8月31日收盘；美股因北京时间21:15尚未开盘，采用8月28日最近常规收盘；PE为TTM口径。</li>
+        <li data-page-node-id="DcRgmyZPO0bmIEh7DO9Gho"><strong data-page-node-id="NdCIEultslGtuXeNHidH32">Applied Materials：</strong><a href="http://ir.appliedmaterials.com/news-releases/news-release-details/applied-materials-announces-third-quarter-2026-results" target="_blank" data-page-node-id="AstMzcIuzxeVfn4SFRtgPW">FY2026 Q3业绩公告，2026-08-13</a>。</li>
+        <li data-page-node-id="Yt9ZzgZzJ7Y8byXcluzr3e"><strong data-page-node-id="yYRVBiLyrzPz5pOiSpjo3t">Micron：</strong><a href="https://www.sec.gov/Archives/edgar/data/723125/000072312526000013/a2026q3ex991-pressrelease.htm" target="_blank" data-page-node-id="1ijVr1Egv3gEmEYBzIqR9r">FY2026 Q3 8-K附件，2026-06-24</a>。</li>
+        <li data-page-node-id="J2GonBw7qonDatJM2fqFAC"><strong data-page-node-id="u9wD6fvVjbMiukPdhthYZt">Broadcom：</strong><a href="https://www.broadcom.com/company/news/financial-releases/64371" target="_blank" data-page-node-id="5ydbBV1ohU2cP7ODFgFLeS">FY2026 Q2业绩公告，2026-06-03</a>。</li>
+        <li data-page-node-id="bE24GFvqDVDsV7hxjRQ7Dx"><strong data-page-node-id="8A7NGHdlC2ZOhpCLYiq9jP">Marvell：</strong><a href="https://investor.marvell.com/sec-filings/all-sec-filings/content/0001835632-26-000014/q127_8kx522026ex-991.htm" target="_blank" data-page-node-id="V8m1xKSxMc8pGU60O9NTNU">FY2027 Q1业绩披露，2026-05-27</a>。</li>
+        <li data-page-node-id="12ZXRH2eaxR9nhaAzXuVRJ"><strong data-page-node-id="W8BggxKE1TMtuXDhHaZurq">Coherent：</strong><a href="https://www.coherent.com/news/press-releases/fourth-quarter-and-fiscal-year-2026-results" target="_blank" data-page-node-id="pDyL8brLC0CNwQEN9VrCax">FY2026 Q4及全年业绩，2026-08-12</a>。</li>
+        <li data-page-node-id="C8EocyiWdsjkEgEWXLmUYk"><strong data-page-node-id="xRti24f0Q3rc34hEmsAwrT">Lumentum：</strong><a href="https://investor.lumentum.com/financial-news-releases/news-details/2026/Lumentum-Announces-Fourth-Quarter-and-Full-Fiscal-Year-2026-Results/default.aspx" target="_blank" data-page-node-id="kq58lklfgJDhnbwovJWOUY">FY2026 Q4及全年业绩，2026-08-11</a>。</li>
+        <li data-page-node-id="KCJTOSWx9nzZxhoiBNxTcs"><strong data-page-node-id="ox6Fs5GnxhgkxmeHoJ1fGa">TTM Technologies：</strong><a href="https://investors.ttm.com/news-events/press-releases/detail/411/ttm-technologies-inc-reports-second-quarter-2026-results" target="_blank" data-page-node-id="FFPkTLb94nSoLydOlKMzRi">2026 Q2业绩公告，2026-08-05</a>。</li>
+      </ol>
+      <p class="small" data-page-node-id="4RSRk75KBGdlUCQ8lzInbI">说明：本文将公司披露和SEC文件作为业务/财务证据，将行情聚合数据用于价格趋势。映射评分、分层与优先级为本文分析结论。不同市场交易时点并不完全同步；美股夜盘主要影响A股次日开盘情绪，不能视作对A股全天走势的充分预测。</p>
+    </div>
+  </section>
+</main>
+<footer data-page-node-id="5g42XurCrGqdtmVXteTUgu">
+  <div class="wrap" data-page-node-id="bEhfNgQSXMhbOQqmBiIvZN">
+    <p data-page-node-id="grLwgQ1qpgRQzug8fowVXC"><strong data-page-node-id="mCviWHWEFDG0lhjkqD89UT">免责声明</strong>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+  </div>
+</footer>
+
+<script>
+  const allUsData = [
+    {sector:'半导体设备', ticker:'AMAT', ytd:80.28, d60:-7.71, pe:'39.83'},
+    {sector:'半导体设备', ticker:'LRCX', ytd:76.70, d60:-12.10, pe:'52.41'},
+    {sector:'半导体设备', ticker:'KLAC', ytd:45.00, d60:-17.31, pe:'47.96'},
+    {sector:'半导体设备', ticker:'ASML', ytd:59.18, d60:-1.64, pe:'53.19'},
+    {sector:'存储芯片', ticker:'MU', ytd:227.05, d60:-13.57, pe:'21.09'},
+    {sector:'存储芯片', ticker:'SNDK', ytd:525.57, d60:-18.92, pe:'20.13'},
+    {sector:'CPO', ticker:'AVGO', ytd:6.95, d60:-22.92, pe:'61.36'},
+    {sector:'CPO', ticker:'MRVL', ytd:155.26, d60:-28.17, pe:'71.73'},
+    {sector:'光模块', ticker:'COHR', ytd:51.27, d60:-33.11, pe:'67.77'},
+    {sector:'光模块', ticker:'LITE', ytd:142.82, d60:-4.58, pe:'亏损'},
+    {sector:'光模块', ticker:'AAOI', ytd:204.73, d60:-42.29, pe:'亏损'},
+    {sector:'光模块', ticker:'FN', ytd:-8.99, d60:-42.85, pe:'31.75'},
+    {sector:'PCB', ticker:'TTMI', ytd:71.96, d60:-37.42, pe:'53.45'},
+    {sector:'PCB', ticker:'ROG', ytd:37.08, d60:-15.19, pe:'74.27'}
+  ];
+
+  const usChart = echarts.init(document.getElementById('usTrendChart'));
+  function renderUsChart(sector) {
+    const data = sector === '全部' ? allUsData : allUsData.filter(item => item.sector === sector);
+    usChart.setOption({
+      color: ['#d83445', '#168f55'],
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' },
+        formatter: params => {
+          const row = data[params[0].dataIndex];
+          return `<strong>${row.ticker}</strong>｜${row.sector}<br>YTD：${row.ytd}%<br>近60日：${row.d60}%<br>PE(TTM)：${row.pe}`;
+        }
+      },
+      legend: { data: ['YTD', '近60日'], bottom: 0 },
+      grid: { left: 56, right: 26, top: 28, bottom: 76 },
+      xAxis: {
+        type: 'category',
+        data: data.map(item => item.ticker),
+        axisLabel: { interval: 0, rotate: data.length > 9 ? 35 : 0, color: '#46556d' }
+      },
+      yAxis: { type: 'value', name: '涨跌幅（%）', axisLabel: { formatter: '{value}%' }, splitLine: { lineStyle: { color: '#e8edf4' } } },
+      series: [
+        { name: 'YTD', type: 'bar', data: data.map(item => item.ytd), itemStyle: { color: '#d83445', borderRadius: [5,5,0,0] } },
+        { name: '近60日', type: 'bar', data: data.map(item => item.d60), itemStyle: { color: '#168f55', borderRadius: [0,0,5,5] } }
+      ]
+    }, true);
+  }
+  renderUsChart('全部');
+
+  document.querySelectorAll('#sectorButtons button').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('#sectorButtons button').forEach(item => item.classList.remove('active'));
+      button.classList.add('active');
+      renderUsChart(button.dataset.sector);
+    });
+  });
+
+  const aChart = echarts.init(document.getElementById('aTrendChart'));
+  aChart.setOption({
+    color: ['#d83445', '#2e67ad'],
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    legend: { data: ['YTD', '近20日'], bottom: 0 },
+    grid: { left: 52, right: 20, top: 26, bottom: 74 },
+    xAxis: { type: 'category', data: ['半导体设备','存储','CPO','光模块*','PCB'], axisLabel: { interval: 0, rotate: 25, color: '#46556d' } },
+    yAxis: { type: 'value', name: '涨跌幅（%）', axisLabel: { formatter: '{value}%' }, splitLine: { lineStyle: { color: '#e8edf4' } } },
+    series: [
+      { name: 'YTD', type: 'bar', data: [94.52,48.45,71.56,50.9,45.18], itemStyle: { color: '#d83445', borderRadius: [5,5,0,0] } },
+      { name: '近20日', type: 'bar', data: [17.46,22.32,25.81,14.0,23.72], itemStyle: { color: '#2e67ad', borderRadius: [5,5,0,0] } }
+    ]
+  });
+
+  const scoreChart = echarts.init(document.getElementById('scoreChart'));
+  const scoreData = [
+    {name:'半导体设备', value:[89,-9.7]},
+    {name:'存储', value:[92,-16.2]},
+    {name:'CPO', value:[91,-22.2]},
+    {name:'光模块', value:[95,-30.7]},
+    {name:'PCB', value:[78,-26.3]}
+  ];
+  scoreChart.setOption({
+    tooltip: { formatter: p => `${p.data.name}<br>映射评分：${p.data.value[0]}<br>核心样本近60日：${p.data.value[1]}%` },
+    grid: { left: 58, right: 24, top: 30, bottom: 54 },
+    xAxis: { type: 'value', min: 70, max: 100, name: '映射评分', splitLine: { lineStyle: { color: '#e8edf4' } } },
+    yAxis: { type: 'value', max: 0, min: -35, name: '近60日（%）', splitLine: { lineStyle: { color: '#e8edf4' } } },
+    series: [{
+      type: 'scatter',
+      symbolSize: 20,
+      data: scoreData,
+      label: { show: true, position: 'top', formatter: p => p.data.name, color: '#233a5d', fontWeight: 700 },
+      itemStyle: { color: '#2e67ad' }
+    }]
+  });
+
+  window.addEventListener('resize', () => {
+    usChart.resize();
+    aChart.resize();
+    scoreChart.resize();
+  });
+</script>
+</body>
+</html>
