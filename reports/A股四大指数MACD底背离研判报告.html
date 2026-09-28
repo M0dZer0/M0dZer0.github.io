@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股四大指数技术形态与MACD日线底背离研判报告 · 2026-09-28</title>
+<style>
+:root{
+  --bg:#f7f8fa; --card:#ffffff; --ink:#1a1d23; --ink2:#4a515e; --ink3:#868e9c;
+  --line:#e6e9ef; --line2:#f0f2f6;
+  --red:#d8342a; --red-bg:#fdeceb; --green:#0a9e5c; --green-bg:#e8f7ef;
+  --blue:#2563c7; --blue-bg:#eaf1fc; --amber:#c47f0a; --amber-bg:#fdf3e0;
+  --shadow:0 1px 3px rgba(20,25,40,.06),0 6px 20px rgba(20,25,40,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.75;padding:36px 20px 80px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto}
+
+.hd{margin-bottom:28px}
+.kicker{display:inline-block;font-size:12px;letter-spacing:.14em;color:var(--blue);background:var(--blue-bg);padding:5px 12px;border-radius:20px;font-weight:600;margin-bottom:14px}
+h1{font-size:30px;font-weight:700;letter-spacing:-.4px;line-height:1.35}
+.sub{color:var(--ink3);font-size:13.5px;margin-top:10px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 28px;margin-bottom:22px;box-shadow:var(--shadow)}
+h2{font-size:19px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:4px;height:17px;background:var(--blue);border-radius:2px}
+h3{font-size:15.5px;font-weight:700;margin:22px 0 10px}
+.lead{color:var(--ink2);font-size:14px;margin-bottom:18px}
+p{font-size:14.2px;color:var(--ink2);margin-bottom:12px}
+
+table{width:100%;border-collapse:collapse;font-size:13.3px;margin:14px 0}
+th{background:#f4f6f9;color:var(--ink2);font-weight:600;text-align:right;padding:10px 11px;border-bottom:2px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+td{padding:10px 11px;border-bottom:1px solid var(--line2);text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:hover{background:#fafbfd}
+.up{color:var(--red);font-weight:600}
+.dn{color:var(--green);font-weight:600}
+.nm{font-weight:600;color:var(--ink)}
+
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0 4px}
+.tile{border:1px solid var(--line);border-radius:11px;padding:15px 16px;background:#fcfdfe}
+.tile .t{font-size:13px;color:var(--ink3);font-weight:600}
+.tile .v{font-size:23px;font-weight:700;margin:5px 0 2px;font-variant-numeric:tabular-nums}
+.tile .c{font-size:13px;font-weight:600}
+.tile .x{font-size:11.5px;color:var(--ink3);margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+
+.tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:5px;font-weight:600;line-height:1.7}
+.tag.r{background:var(--red-bg);color:var(--red)}
+.tag.g{background:var(--green-bg);color:var(--green)}
+.tag.b{background:var(--blue-bg);color:var(--blue)}
+.tag.a{background:var(--amber-bg);color:var(--amber)}
+
+.note{border-left:3px solid var(--blue);background:var(--blue-bg);padding:13px 16px;border-radius:0 8px 8px 0;font-size:13.3px;color:var(--ink2);margin:14px 0}
+.warn{border-left:3px solid var(--amber);background:var(--amber-bg);padding:13px 16px;border-radius:0 8px 8px 0;font-size:13.3px;color:var(--ink2);margin:14px 0}
+
+ul{margin:8px 0 12px 20px}li{font-size:14px;color:var(--ink2);margin-bottom:7px}
+.mono{font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink)}
+
+.bars{margin:16px 0}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:9px;font-size:12.8px}
+.bar-lb{width:96px;color:var(--ink2);flex-shrink:0}
+.bar-tr{flex:1;height:22px;background:#f0f2f6;border-radius:5px;position:relative;overflow:hidden}
+.bar-fl{height:100%;border-radius:5px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-weight:600;font-size:11.5px}
+.bar-vl{width:120px;text-align:right;color:var(--ink3);flex-shrink:0;font-variant-numeric:tabular-nums}
+
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--ink3);margin-top:10px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+.ft{text-align:center;color:var(--ink3);font-size:12px;margin-top:30px;line-height:2}
+@media(max-width:860px){.grid4{grid-template-columns:repeat(2,1fr)}body{padding:20px 12px 60px}.card{padding:20px 18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hd">
+  <span class="kicker">技术形态专题研究</span>
+  <h1>A股四大指数技术形态诊断与 MACD 日线底背离结构推演</h1>
+  <div class="sub">数据截止 2026年9月28日收盘 · 标的：上证指数 / 深证成指 / 创业板指 / 科创50 · 数据源：交易所行情接口</div>
+</div>
+
+<!-- 摘要 -->
+<div class="card">
+  <h2>核心结论速览</h2>
+  <p class="lead">今日四大指数集体重挫，深市跌幅显著大于沪市，呈现典型的"成长股杀跌主导"的下跌结构。从 MACD 日线维度看，<strong>深证成指与创业板指已经具备底背离的"必要条件"（价格创新低 + DIF 显著高于前低）</strong>，但尚缺"确认条件"；上证指数与科创50 仍处于背离结构的前置阶段，需要再下一台阶才能触发。</p>
+
+  <div class="grid4">
+    <div class="tile">
+      <div class="t">上证指数</div>
+      <div class="v">3823.62</div>
+      <div class="c dn">−64.75 &nbsp;−1.67%</div>
+      <div class="x">DIF −9.98 ｜ 未创新低<br><span class="tag a">背离前置期</span></div>
+    </div>
+    <div class="tile">
+      <div class="t">深证成指</div>
+      <div class="v">12858.75</div>
+      <div class="c dn">−458.22 &nbsp;−3.44%</div>
+      <div class="x">DIF −182.76 ｜ 已创新低<br><span class="tag b">背离雏形已现</span></div>
+    </div>
+    <div class="tile">
+      <div class="t">创业板指</div>
+      <div class="v">3139.82</div>
+      <div class="c dn">−149.13 &nbsp;−4.53%</div>
+      <div class="x">DIF −53.07 ｜ 已创新低<br><span class="tag b">背离雏形已现</span></div>
+    </div>
+    <div class="tile">
+      <div class="t">科创50</div>
+      <div class="v">1555.98</div>
+      <div class="c dn">−65.89 &nbsp;−4.06%</div>
+      <div class="x">DIF −16.24 ｜ 未创新低<br><span class="tag a">背离前置期</span></div>
+    </div>
+  </div>
+
+  <div class="note"><strong>一句话结论：</strong>深证成指与创业板指今日以"价格破前低、MACD 指标远未破前低"的方式完成了底背离的左半边；若未来 5–15 个交易日内出现 <strong>DIF 上穿 DEA 的金叉 + 指数站回 5 日线</strong>，背离即告确认，四大指数对应的第一目标涨幅区间为 <span class="mono">+1.5% ~ +7.0%</span>，第二目标为 <span class="mono">+3.3% ~ +12.1%</span>，乐观目标为 <span class="mono">+5.9% ~ +19.1%</span>（详见第四节）。</div>
+</div>
+
+<!-- 一、当前技术形态 -->
+<div class="card">
+  <h2>一、当前技术形态全景（2026-09-28 收盘）</h2>
+  <p class="lead">四大指数今日全线下破布林带下轨或逼近下轨，短期 RSI 均进入超卖区，属于典型的恐慌性加速下跌末段特征。</p>
+
+  <table>
+    <thead><tr>
+      <th>指数</th><th>收盘</th><th>涨跌幅</th><th>MA5</th><th>MA20</th><th>MA60</th><th>MA250</th><th>BOLL下轨</th><th>RSI6</th><th>KDJ-J</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="nm">上证指数</td><td>3823.62</td><td class="dn">−1.67%</td><td>3910.11</td><td>3920.31</td><td>3910.02</td><td>3991.15</td><td>3838.92</td><td>25.22</td><td>23.01</td></tr>
+      <tr><td class="nm">深证成指</td><td>12858.75</td><td class="dn">−3.44%</td><td>13453.11</td><td>13568.75</td><td>14000.69</td><td>14123.49</td><td>13071.68</td><td>19.18</td><td>9.84</td></tr>
+      <tr><td class="nm">创业板指</td><td>3139.82</td><td class="dn">−4.53%</td><td>3321.58</td><td>3332.06</td><td>3495.91</td><td>3440.35</td><td>3197.08</td><td>20.80</td><td>11.32</td></tr>
+      <tr><td class="nm">科创50</td><td>1555.98</td><td class="dn">−4.06%</td><td>1632.24</td><td>1608.19</td><td>1717.65</td><td>1546.998</td><td>1519.93</td><td>30.56</td><td>30.87</td></tr>
+    </tbody>
+  </table>
+
+  <h3>1.1 形态逐一诊断</h3>
+  <p><strong>上证指数 —— 相对抗跌，但年线已破。</strong>收盘 3823.62，一举跌穿 MA5/MA20/MA60（三者密集粘合于 3910–3920 一带）以及年线 MA250（3991），并收在布林下轨 3838.92 之下 15 点。均线系统由此前的"粘合待变"转为空头发散初期。5 日跌 2.26%、20 日跌 3.25%、60 日跌 5.44%，年内累计 −3.66%。量能方面成交额 8045 亿元、量比 0.94，属于<strong>缩量阴跌而非放量恐慌</strong>，杀跌动能相对温和。</p>
+
+  <p><strong>深证成指 —— 破位最彻底，趋势最弱。</strong>收盘 12858.75，跌破 7 月 30 日阶段低点 13285.80，创下本轮调整新低，同时击穿布林下轨 13071.68。60 日跌幅 −17.56%，MA60（14000）与 MA120（14680）呈完全空头排列且斜率陡峭。RSI6 仅 19.18，为四指数中最低，KDJ 的 J 值 9.84 深度超卖。距离 52 周低点 12448.32 仅剩 3.2% 空间——这是当前最关键的技术支撑。</p>
+
+  <p><strong>创业板指 —— 跌幅最大，超跌最深。</strong>收盘 3139.82，单日 −4.53% 领跌，跌破 7 月 30 日低点 3244.62 与布林下轨 3197.08。60 日跌幅 −21.89%，MA120（3693）已高出现价 17.6%，属于严重的乖离状态。值得注意的是年线 MA250 位于 3440，指数已在年线下方运行约两周，中期趋势转弱信号明确。</p>
+
+  <p><strong>科创50 —— 唯一年内正收益，但短线补跌。</strong>收盘 1555.98，年内仍上涨 15.76%，是四大指数中唯一录得正收益的品种。技术上尚未跌破 9 月 14 日低点 1528.27，且年线 MA250（1547.00）近在咫尺，构成第一道硬支撑。MACD 柱仍为正值 +13.24（DIF −16.24 > DEA −22.86，仍在金叉状态内），说明<strong>它的下跌启动最晚，调整最不充分</strong>。</p>
+
+  <div class="warn"><strong>结构性观察：</strong>今日跌幅呈现清晰的"风险偏好排序"——创业板（−4.53%）&gt; 科创50（−4.06%）&gt; 深证成指（−3.44%）&gt; 上证（−1.67%）。深市成交额 8983 亿元大于沪市 8045 亿元，说明抛压集中在成长板块。这种"高 β 领跌"的结构通常出现在情绪释放的中后段，但也意味着在真正企稳前，成长指数的波动会持续放大。</p>
+</div>
+
+<!-- 二、MACD现状 -->
+<div class="card">
+  <h2>二、MACD 指标现状与前低参照系</h2>
+  <p class="lead">底背离的判定必须锚定一个明确的"前低参照点"。以下是从 5 月至今 130 个交易日中筛选出的、各指数上一轮下跌的 DIF 极值点及对应价格。</p>
+
+  <table>
+    <thead><tr>
+      <th>指数</th><th>前低日期</th><th>前低收盘</th><th>当时DIF极值</th><th>今日收盘</th><th>今日DIF</th><th>价格</th><th>DIF</th><th>背离必要条件</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="nm">上证指数</td><td>2026-07-17</td><td>3764.15</td><td>−62.14</td><td>3823.62</td><td>−9.98</td>
+        <td class="up">未破</td><td class="up">高于</td><td><span class="tag a">1/2 未满足</span></td>
+      </tr>
+      <tr>
+        <td class="nm">深证成指</td><td>2026-07-30</td><td>13285.80</td><td>−500.19</td><td>12858.75</td><td>−182.76</td>
+        <td class="dn">已破</td><td class="up">高于</td><td><span class="tag b">2/2 已满足</span></td>
+      </tr>
+      <tr>
+        <td class="nm">创业板指</td><td>2026-07-30</td><td>3244.62</td><td>−174.82</td><td>3139.82</td><td>−53.07</td>
+        <td class="dn">已破</td><td class="up">高于</td><td><span class="tag b">2/2 已满足</span></td>
+      </tr>
+      <tr>
+        <td class="nm">科创50</td><td>2026-09-14</td><td>1528.27</td><td>−46.66</td><td>1555.98</td><td>−16.24</td>
+        <td class="up">未破</td><td class="up">高于</td><td><span class="tag a">1/2 未满足</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>2.1 DIF 距离前低的"安全垫"可视化</h3>
+  <p>下图展示各指数当前 DIF 相对于前低 DIF 的抬升幅度。抬升越多，说明指标钝化越轻、背离的"张力"越强；但同时也意味着在背离确认前，DIF 还有较大的下探余地。</p>
+
+  <div class="bars">
+    <div class="bar-row"><div class="bar-lb">上证指数</div><div class="bar-tr"><div class="bar-fl" style="width:84%;background:linear-gradient(90deg,#4a8fe0,#2563c7)">84%</div></div><div class="bar-vl">−9.98 vs −62.14</div></div>
+    <div class="bar-row"><div class="bar-lb">深证成指</div><div class="bar-tr"><div class="bar-fl" style="width:63%;background:linear-gradient(90deg,#4a8fe0,#2563c7)">63%</div></div><div class="bar-vl">−182.76 vs −500.19</div></div>
+    <div class="bar-row"><div class="bar-lb">创业板指</div><div class="bar-tr"><div class="bar-fl" style="width:70%;background:linear-gradient(90deg,#4a8fe0,#2563c7)">70%</div></div><div class="bar-vl">−53.07 vs −174.82</div></div>
+    <div class="bar-row"><div class="bar-lb">科创50</div><div class="bar-tr"><div class="bar-fl" style="width:65%;background:linear-gradient(90deg,#4a8fe0,#2563c7)">65%</div></div><div class="bar-vl">−16.24 vs −46.66</div></div>
+  </div>
+  <div class="legend"><span><i style="background:#2563c7"></i>DIF 相对前低的抬升比例（越高代表指标位置越"高"，背离张力越大）</span></div>
+
+  <div class="note"><strong>关键读数：</strong>深证成指今日 DIF 为 −182.76，而 7 月底那轮下跌 DIF 最低到过 −500.19。也就是说，<strong>价格已经跌破 7 月低点 3.2%，但 MACD 快线只回到当时深度的三分之一强</strong>——这正是底背离的经典形态。创业板指同理：价格低于 7 月低点 3.2%，DIF（−53.07）仅为前低（−174.82）的 30%。</div>
+</div>
+
+<!-- 三、形成条件 -->
+<div class="card">
+  <h2>三、形成 MACD 日线底背离的具体条件</h2>
+  <p class="lead">底背离不是一个"点"，而是一个需要三步走完的"过程"。以下按严格的判定链条拆解，并给出每个指数对应的量化触发位。</p>
+
+  <h3>3.1 通用判定链条（三步法）</h3>
+  <ul>
+    <li><strong>第一步 · 必要条件（价格新低）：</strong>指数收盘价跌破上一轮下跌的阶段低点，形成 A、B 两个可比的价格低点，且 B &lt; A。</li>
+    <li><strong>第二步 · 必要条件（指标不新低）：</strong>B 点对应的 DIF 值明显高于 A 点的 DIF 值（经验阈值：抬升幅度 ≥ 20%，且 MACD 绿柱面积显著小于前一轮）。</li>
+    <li><strong>第三步 · 充分条件（结构确认）：</strong>这是最容易被忽略、却决定成败的一步。必须同时出现：<br>
+      ① DIF 在 B 点后拐头向上并<strong>上穿 DEA 形成金叉</strong>；<br>
+      ② MACD 柱状体由绿翻红（由负转正）；<br>
+      ③ 指数价格<strong>站回 5 日均线且不再破 B 点低点</strong>；<br>
+      ④ 量能配合：金叉当日或次日成交额较背离低点当日放大 15% 以上。<br>
+      四项中至少满足 ①③ 两项，背离方可视为"确认"，此前只能称为"雏形"。</li>
+  </ul>
+
+  <div class="warn"><strong>失败模式提醒：</strong>只满足前两步而第三步迟迟不来，就是所谓"背离钝化"。指数会在低位反复磨、DIF 继续缓慢下移，直至原有背离结构被新的、更低的 DIF 低点破坏。<strong>历史上约三到四成的背离雏形最终以钝化失败告终</strong>，因此第三步的确认信号才是真正的入场依据。</div>
+
+  <h3>3.2 各指数的量化触发条件</h3>
+  <table>
+    <thead><tr>
+      <th>指数</th><th>价格触发位（需跌破）</th><th>DIF 约束上限（不可跌破）</th><th>预计背离低点区间</th><th>确认信号触发位</th><th>当前进度</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="nm">上证指数</td>
+        <td>收盘 &lt; 3764.15<br><span style="color:var(--ink3);font-size:12px">盘中 &lt; 3741.11（52周低）</span></td>
+        <td>DIF &gt; −62.14</td>
+        <td class="mono">3700 – 3760</td>
+        <td>DIF 上穿 DEA<br>且站回 MA5</td>
+        <td><span class="tag a">需再跌 1.6%</span></td>
+      </tr>
+      <tr>
+        <td class="nm">深证成指</td>
+        <td><span class="tag g">已跌破</span> 13285.80</td>
+        <td>DIF &gt; −500.19</td>
+        <td class="mono">12500 – 12860</td>
+        <td>DIF 上穿 DEA<br>（现 DIF −182.8 &lt; DEA −159.7）</td>
+        <td><span class="tag b">待金叉确认</span></td>
+      </tr>
+      <tr>
+        <td class="nm">创业板指</td>
+        <td><span class="tag g">已跌破</span> 3244.62</td>
+        <td>DIF &gt; −174.82</td>
+        <td class="mono">3050 – 3140</td>
+        <td>DIF 上穿 DEA<br>（现 DIF −53.1 &lt; DEA −51.4）</td>
+        <td><span class="tag b">待金叉确认</span></td>
+      </tr>
+      <tr>
+        <td class="nm">科创50</td>
+        <td>收盘 &lt; 1528.27<br><span style="color:var(--ink3);font-size:12px">深度背离需 &lt; 1552.89 并守住 DIF &gt; −80.86</span></td>
+        <td>DIF &gt; −46.66</td>
+        <td class="mono">1490 – 1530</td>
+        <td>先需 MACD 柱转负<br>再等 DIF 回升金叉</td>
+        <td><span class="tag a">需再跌 1.8%</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>3.3 时间窗口推演</h3>
+  <p>参照 7–8 月那轮完整的背离案例：深证成指 7 月 30 日构筑价格低点后，DIF 于 8 月 5 日金叉、8 月 6 日 MACD 柱翻红，从价格见底到结构确认耗时 <strong>4–5 个交易日</strong>。当前深市两大指数 DIF 刚刚死叉下行、绿柱开始扩张，按同等节奏推算：</p>
+  <ul>
+    <li><strong>深证成指 / 创业板指：</strong>若本周内（9/29–9/30）止跌，最快 <strong>10 月中上旬（节后第 3–8 个交易日）</strong> 完成金叉确认；若继续放量下杀，确认时点顺延至 10 月下旬。</li>
+    <li><strong>上证指数：</strong>需先完成对 3764 的破位。以当前每日 1.5%–2% 的下跌斜率，<strong>1–3 个交易日内</strong> 即可触及；随后 3–5 个交易日完成指标回升，整体窗口在 <strong>10 月上旬至中旬</strong>。</li>
+    <li><strong>科创50：</strong>由于 MACD 柱尚为正值，需先经历"翻绿—扩张—收敛"的完整周期，是四者中<strong>最晚形成背离</strong>的品种，预计窗口在 <strong>10 月中下旬</strong>。</li>
+  </ul>
+</div>
+
+<!-- 四、上涨空间 -->
+<div class="card">
+  <h2>四、背离确认后的上涨空间测算</h2>
+  <p class="lead">测算方法：以"均线阻力位分层 + 上一轮同级别背离反弹幅度类比"双重校验。第一目标取 MA20/布林中轨，第二目标取 MA60 或年线，乐观目标取 8 月 18 日高点（上一轮反弹终点）。</p>
+
+  <h3>4.1 历史类比基准：2026 年 7–8 月同级别背离的实际反弹幅度</h3>
+  <table>
+    <thead><tr><th>指数</th><th>背离低点（日期/点位）</th><th>反弹高点（8/18附近）</th><th>实际反弹幅度</th><th>历时</th></tr></thead>
+    <tbody>
+      <tr><td class="nm">上证指数</td><td>7/17 &nbsp; 3764.15</td><td>3990.30</td><td class="up">+6.01%</td><td>22个交易日</td></tr>
+      <tr><td class="nm">深证成指</td><td>7/30 &nbsp; 13285.80</td><td>14622.50</td><td class="up">+10.06%</td><td>13个交易日</td></tr>
+      <tr><td class="nm">创业板指</td><td>7/30 &nbsp; 3244.62</td><td>3740.16</td><td class="up">+15.27%</td><td>13个交易日</td></tr>
+      <tr><td class="nm">科创50</td><td>8/03 &nbsp; 1552.89</td><td>1790.87</td><td class="up">+15.32%</td><td>10个交易日</td></tr>
+    </tbody>
+  </table>
+  <div class="note">上一轮反弹的幅度排序为：科创50 ≈ 创业板指 &gt; 深证成指 &gt; 上证指数，弹性与指数的 β 属性高度一致。本次测算沿用这一排序逻辑。</div>
+
+  <h3>4.2 目标点位与涨幅测算（相对今日 2026-09-28 收盘价）</h3>
+
+  <table>
+    <thead><tr>
+      <th>指数</th><th>今日收盘</th><th>第一目标（点位）</th><th>涨幅</th><th>第二目标（点位）</th><th>涨幅</th><th>乐观目标（点位）</th><th>涨幅</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="nm">上证指数</td><td>3823.62</td>
+        <td class="mono">3880 – 3900</td><td class="up">+1.5% ~ +2.0%</td>
+        <td class="mono">3950 – 4000</td><td class="up">+3.3% ~ +4.6%</td>
+        <td class="mono">4050 – 4100</td><td class="up">+5.9% ~ +7.2%</td>
+      </tr>
+      <tr>
+        <td class="nm">深证成指</td><td>12858.75</td>
+        <td class="mono">13550 – 13700</td><td class="up">+5.4% ~ +6.5%</td>
+        <td class="mono">14000 – 14200</td><td class="up">+8.9% ~ +10.4%</td>
+        <td class="mono">14600 – 14700</td><td class="up">+13.5% ~ +14.3%</td>
+      </tr>
+      <tr>
+        <td class="nm">创业板指</td><td>3139.82</td>
+        <td class="mono">3320 – 3360</td><td class="up">+5.7% ~ +7.0%</td>
+        <td class="mono">3480 – 3520</td><td class="up">+10.8% ~ +12.1%</td>
+        <td class="mono">3700 – 3740</td><td class="up">+17.8% ~ +19.1%</td>
+      </tr>
+      <tr>
+        <td class="nm">科创50</td><td>1555.98</td>
+        <td class="mono">1610 – 1640</td><td class="up">+3.5% ~ +5.4%</td>
+        <td class="mono">1700 – 1720</td><td class="up">+9.3% ~ +10.5%</td>
+        <td class="mono">1790 – 1830</td><td class="up">+15.0% ~ +17.6%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>4.3 涨幅区间可视化</h3>
+  <div class="bars">
+    <div class="bar-row"><div class="bar-lb">上证指数</div><div class="bar-tr">
+      <div class="bar-fl" style="width:10.5%;background:#7fb069;position:absolute;left:0"></div>
+      <div class="bar-fl" style="width:24%;background:#e8a33d;position:absolute;left:0;opacity:.55"></div>
+      <div class="bar-fl" style="width:37.7%;background:#d8342a;position:absolute;left:0;opacity:.35"></div>
+    </div><div class="bar-vl">最高 +7.2%</div></div>
+    <div class="bar-row"><div class="bar-lb">深证成指</div><div class="bar-tr">
+      <div class="bar-fl" style="width:34%;background:#7fb069;position:absolute;left:0"></div>
+      <div class="bar-fl" style="width:54.5%;background:#e8a33d;position:absolute;left:0;opacity:.55"></div>
+      <div class="bar-fl" style="width:74.9%;background:#d8342a;position:absolute;left:0;opacity:.35"></div>
+    </div><div class="bar-vl">最高 +14.3%</div></div>
+    <div class="bar-row"><div class="bar-lb">创业板指</div><div class="bar-tr">
+      <div class="bar-fl" style="width:36.6%;background:#7fb069;position:absolute;left:0"></div>
+      <div class="bar-fl" style="width:63.4%;background:#e8a33d;position:absolute;left:0;opacity:.55"></div>
+      <div class="bar-fl" style="width:100%;background:#d8342a;position:absolute;left:0;opacity:.35"></div>
+    </div><div class="bar-vl">最高 +19.1%</div></div>
+    <div class="bar-row"><div class="bar-lb">科创50</div><div class="bar-tr">
+      <div class="bar-fl" style="width:28.3%;background:#7fb069;position:absolute;left:0"></div>
+      <div class="bar-fl" style="width:55%;background:#e8a33d;position:absolute;left:0;opacity:.55"></div>
+      <div class="bar-fl" style="width:92.1%;background:#d8342a;position:absolute;left:0;opacity:.35"></div>
+    </div><div class="bar-vl">最高 +17.6%</div></div>
+  </div>
+  <div class="legend">
+    <span><i style="background:#7fb069"></i>第一目标</span>
+    <span><i style="background:#e8a33d;opacity:.55"></i>第二目标</span>
+    <span><i style="background:#d8342a;opacity:.35"></i>乐观目标</span>
+  </div>
+
+  <h3>4.4 目标位的技术依据</h3>
+  <ul>
+    <li><strong>上证指数：</strong>第一目标 3880–3900 对应 MA10（3897.9）与 MA5（3910.1）的回补；第二目标 3950–4000 对应 MA60（3910）上沿、MA250 年线（3991.2）与 MA120（3997.5）的密集压力带——这是最难逾越的一关；乐观目标 4050–4100 为 6 月下旬至 7 月上旬的成交密集区。</li>
+    <li><strong>深证成指：</strong>第一目标 13550–13700 对应 MA20/布林中轨（13568.8）；第二目标 14000–14200 对应 MA60（14000.7）与 MA250（14123.5）叠加位；乐观目标 14600–14700 为 8 月 17–18 日反弹高点（14704 / 14622）。</li>
+    <li><strong>创业板指：</strong>第一目标 3320–3360 对应 MA20（3332.1）与 MA10（3312.4）；第二目标 3480–3520 对应 MA60（3495.9）；由于年线 MA250（3440.3）位于第二目标下方，3440 附近会先形成一道阻力。乐观目标 3700–3740 为 8 月 17 日高点 3740.16。</li>
+    <li><strong>科创50：</strong>第一目标 1610–1640 对应 MA20（1608.2）与 MA5（1632.2）；第二目标 1700–1720 对应 MA120（1706.2）与 MA60（1717.6）；乐观目标 1790–1830 对应 8 月 17–18 日双顶区（1788.9 / 1790.9）。由于该指数年线 MA250 仅 1547，下方缓冲最厚，一旦企稳反弹的爆发力预计仍最强。</li>
+  </ul>
+
+  <div class="warn"><strong>概率分布提示：</strong>基于历史统计经验，日线级别底背离确认后，达到第一目标的概率较高（多数案例能够触及 MA20 一带），达到第二目标需要基本面或资金面配合（约半数案例），触及乐观目标则通常要求形成周线级别的共振（少数案例）。<strong>建议以第一目标作为主要预期锚点，第二目标作为浮动止盈参考。</strong></div>
+</div>
+
+<!-- 五、风险 -->
+<div class="card">
+  <h2>五、风险因素与结构失效条件</h2>
+  <ul>
+    <li><strong>背离钝化风险（最高概率风险）：</strong>若深证成指跌破 52 周低点 12448.32、创业板指跌破 3050，且 DIF 同步跌破前低（−500 / −175），则现有背离结构直接作废，需要以更低的位置重新构筑参照点。</li>
+    <li><strong>缩量陷阱：</strong>今日四大指数量比均低于 1（0.90–0.97），属于缩量下跌。缩量意味着抛压未完全释放，真正的底部通常需要一根<strong>放量长下影或放量阳线</strong>来完成换手，缺少这一步的反弹容易变成反抽。</li>
+    <li><strong>沪深分化风险：</strong>上证与深市的背离形成时点可能错开 5–10 个交易日，若上证先行企稳而深市继续下探，指数间会出现"假共振"，导致成长板块的反弹被证伪。</li>
+    <li><strong>科创50 的独立风险：</strong>该指数年内仍有 +15.76% 涨幅、PE 高达 127.8 倍，估值消化压力远大于其余三者。若补跌未充分（当前 60 日跌幅 −21.24%，但年内仍正收益），其"背离"可能只是下跌中继中的技术喘息。</li>
+    <li><strong>时间风险：</strong>10 月初的长假因素会打断指标连续性，节前缩量与节后跳空都可能使 DIF/DEA 的交叉信号出现失真，建议以节后第 2–3 个交易日的收盘结构为准。</li>
+  </ul>
+</div>
+
+<!-- 方法论 -->
+<div class="card">
+  <h2>附：数据与方法说明</h2>
+  <p><strong>数据口径：</strong>全部行情与技术指标取自交易所行情接口，日期为 2026 年 9 月 28 日收盘。MACD 参数为标准 (12, 26, 9)，其中 DIF = EMA12 − EMA26，DEA = DIF 的 9 日 EMA，MACD 柱 = 2 × (DIF − DEA)。</p>
+  <p><strong>前低参照点选取：</strong>回溯 2026 年 5 月 18 日至 9 月 28 日共 130 个交易日，取该区间内 DIF 的局部极小值及其对应的价格低点作为背离比较基准（上证 7/17–7/24、深成指 7/30、创业板 7/30–8/3、科创50 8/3–8/4 与 9/14）。</p>
+  <p><strong>目标位测算：</strong>阻力位取自当日实际均线数值与布林带参数，历史反弹幅度取自 7 月低点至 8 月 17–18 日高点的实际区间。点位区间为取整后的近似值，涨幅以今日收盘价为分母计算。</p>
+  <p style="color:var(--ink3);font-size:13px;margin-top:16px">本报告为技术形态的客观分析与情景推演，所有目标位均建立在"背离结构成立且被确认"的前提假设之上，不构成任何投资建议。市场存在不确定性，技术分析无法预测突发事件，投资决策请结合基本面、资金面并自行承担风险。</p>
+</div>
+
+<div class="ft">
+  报告生成时间：2026年9月28日 · 数据截止当日收盘<br>
+  技术分析仅供参考 · 投资有风险，入市需谨慎
+</div>
+
+</div>
+</body>
+</html>
