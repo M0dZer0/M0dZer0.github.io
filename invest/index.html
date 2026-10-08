@@ -3,26 +3,9 @@
   <head>
     <script>
       const DAILY_DATA = [
-        { date: "2026-09-30", eastMoney: 16372, ths: 47050, gold: 1817, margin: 30616},
-        { date: "2026-09-29", eastMoney: 16702, ths: 52034, gold: 1798, margin: 40577},
-        { date: "2026-09-28", eastMoney: 16602, ths: 51049, gold: 1840, margin: 40560},
-        { date: "2026-09-24", eastMoney: 17452, ths: 54483, gold: 1855, margin: 40500},
-        { date: "2026-09-21", eastMoney: 17965, ths: 55936, gold: 1880, margin: 40439},
-        { date: "2026-09-18", eastMoney: 17929, ths: 55384, gold: 1896, margin: 40388},
-        { date: "2026-09-17", eastMoney: 17387, ths: 52831, gold: 1888, margin: 40370},
-        { date: "2026-09-16", eastMoney: 17425, ths: 53269, gold: 1876, margin: 40353},
-        { date: "2026-09-15", eastMoney: 16638, ths: 51573, gold: 1860, margin: 40336},
-        { date: "2026-09-14", eastMoney: 15689, ths: 51505, gold: 1870, margin: 40291},
-        { date: "2026-09-11", eastMoney: 15936, ths: 53259, gold: 1882, margin: 40270},
-        { date: "2026-09-10", eastMoney: 16171, ths: 53778, gold: 1909, margin: 40250},
-        { date: "2026-09-09", eastMoney: 16260, ths: 53939, gold: 1915, margin: 40231},
-        { date: "2026-09-08", eastMoney: 16259, ths: 54105, gold: 1928, margin: 40215},
-        { date: "2026-09-07", eastMoney: 16401, ths: 54225, gold: 1935, margin: 40198},
-        { date: "2026-09-04", eastMoney: 15732, ths: 52217, gold: 1921, margin: 40150},
-        { date: "2026-09-03", eastMoney: 16035, ths: 53659, gold: 1890, margin: 40130},
-        { date: "2026-09-02", eastMoney: 16152, ths: 54276, gold: 1878, margin: 40112},
-        { date: "2026-09-01", eastMoney: 16481, ths: 55024, gold: 1919, margin: 40095},
-        { date: "2026-08-31", eastMoney: 16929, ths: 56700, gold: 1928, margin: 40078}
+        // 融资余额汇总所有以 margin 开头的字段（margin、margin1、margin2 等）；未填写时为 0。
+        { date: "2026-10-08", eastMoney: 15778, ths: 44495, gold: 2737, margin_jd: 25716, margin_alipay: 6012, margin_dy: 2713},
+        { date: "2026-09-30", eastMoney: 16372, ths: 47050, gold: 1817, margin: 30616}
       ];
       // 回本后更新盈利总额
     </script>
@@ -738,12 +721,18 @@
     </div>
 
     <script>
+      function getMarginBalance(record) {
+        return Object.entries(record).reduce((total, [key, value]) => {
+          return key.startsWith("margin") ? total + value : total;
+        }, 0);
+      }
+
       const metricConfig = {
         total: {
           label: "总资产",
           color: getCssVar("--total"),
           valueOf(record) {
-            return record.eastMoney + record.ths + record.gold - record.margin;
+            return record.eastMoney + record.ths + record.gold - getMarginBalance(record);
           }
         },
         eastMoney: {
@@ -771,7 +760,7 @@
           label: "融资余额",
           color: getCssVar("--margin"),
           valueOf(record) {
-            return record.margin;
+            return getMarginBalance(record);
           }
         }
       };
